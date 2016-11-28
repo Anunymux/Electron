@@ -13,7 +13,9 @@ app.on('ready', _ => {
     var win = new BrowserWindow({
         width: 500,
         height: 300,
-        alwaysOnTop: true
+        alwaysOnTop: true,
+        frame: false,
+        transparent:false
     })
 
     win.on('close', function () {
