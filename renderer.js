@@ -10,6 +10,7 @@ const fs = require('fs')
 const readline = require('readline')
 
 $( document ).ready(function() {
+	PresentErrorNicely()
 	console.log("ready!")
 
 	document.ondragover = document.ondrop = (ev) => {
@@ -65,7 +66,8 @@ function ReadFileFromDropAsync(ev){
 	console.log('end of line reached')
 }
 
-function PresentErrorNicely(err){
-	
+function PresentErrorNicely(){
+	var toastr = require('toastr')
+	toastr.info('Are you the 6 fingered man?')
 }
 
