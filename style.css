@@ -1,8 +1,10 @@
-body{
+body
+{
     background-color: #ECEFF1
 }
 
-h1{
+h1
+{
     text-align: center;
 }
 
@@ -10,8 +12,8 @@ h1{
     -webkit-app-region: no-drag;
 }*/
 
-
-textarea{
+textarea
+{
     -webkit-app-region: no-drag;
     word-wrap: normal;
     margin-left: auto;
