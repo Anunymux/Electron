@@ -65,5 +65,7 @@ function ReadFileFromDropAsync(ev){
 	console.log('end of line reached')
 }
 
-
+function PresentErrorNicely(err){
+	
+}
 
