@@ -23,8 +23,31 @@ app.on('ready', _ => {
         win = null
     })
 
+    win.webContents.on('crashed', function (event, killed) {
+         alert(`Event: ${event} killed:${killed}`)
+    })
+
     win.loadURL(`${__dirname}/index.html`)  
 })
+
+function PresentErrorNicely(err){
+	var toastr = require('toastr')
+	toastr.options = {
+		"newestOnTop": false,
+		"positionClass": "toast-top-right",
+		"preventDuplicates": false,
+		"onclick": null, 
+		"showDuration": "999999",
+		"hideDuration": "999999",
+		"timeOut":"0",
+		"extendedTimeOut":"0",
+		"closeButton":true,
+		"tapToDismiss": false,
+		"progressBar":false
+	}
+
+	toastr["error"](err, 'An error has ocured')
+}
 
 
 

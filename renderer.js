@@ -83,6 +83,7 @@ function PresentErrorNicely(err){
 	}
 
 	toastr["error"](err, 'An error has ocured')
-
 }
+
+
 
