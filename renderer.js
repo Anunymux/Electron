@@ -75,14 +75,14 @@ function PresentErrorNicely(err){
 		"onclick": null, 
 		"showDuration": "999999",
 		"hideDuration": "999999",
-		"timeOut":"999999",
-		"extendedTimeOut":"999999",
+		"timeOut":"0",
+		"extendedTimeOut":"0",
 		"closeButton":true,
 		"tapToDismiss": false,
-		"progressBar":true
+		"progressBar":false
 	}
 
-	toastr["error"](`An error is occured: \n ${err}`)
+	toastr["error"](err, 'An error has ocured')
 
 }
 

@@ -6,10 +6,6 @@ h1{
     text-align: center;
 }
 
-/*#drop_zone{
-    -webkit-app-region: no-drag;
-}*/
-
 textarea{
     -webkit-app-region: no-drag;
     word-wrap: normal;
