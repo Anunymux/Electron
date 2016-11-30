@@ -1,5 +1,5 @@
 {
-  "name": "electron-tut",
+  "name": "instant-any",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -17,8 +17,6 @@
     "electron-debug": "^1.1.0",
     "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",
-    "line-reader": "^0.4.0",
-    "n-readlines": "^0.2.7",
     "toastr": "^2.1.2"
   },
   "devDependencies": {

@@ -24,7 +24,13 @@ app.on('ready', _ => {
     })
 
     win.webContents.on('crashed', function (event, killed) {
-         alert(`Event: ${event} killed:${killed}`)
+        PresentErrorNicely(err)
+        alert(`Event: ${event} killed:${killed}`)
+    })
+
+    win.on('unresponsive', function (event) {
+        PresentErrorNicely(err)
+        alert(`Event: ${event}`)
     })
 
     win.loadURL(`${__dirname}/index.html`)  
@@ -49,7 +55,10 @@ function PresentErrorNicely(err){
 	toastr["error"](err, 'An error has ocured')
 }
 
-
+process.on('uncaughtException', function (err) { 
+    PresentErrorNicely(err)
+    alert(`Event: ${event}`)
+})
 
 
 
