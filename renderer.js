@@ -68,6 +68,6 @@ function ReadFileFromDropAsync(ev){
 
 function PresentErrorNicely(){
 	var toastr = require('toastr')
-	toastr.info('Are you the 6 fingered man?')
+	toastr.info('Enjoy!')
 }
 
