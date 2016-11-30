@@ -44,8 +44,8 @@ function ReadFileFromDrop(ev) {
 
 function ReadFileFromDropAsync(ev){
 	var file = ev.dataTransfer.files[0]
-
 	console.log('ReadFileFromDropAsync')
+	toastr.info('ReadFileFromDropAsync')
 }
 
 function PresentErrorNicely(err){
