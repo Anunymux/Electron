@@ -14,7 +14,7 @@ app.on('ready', _ => {
         width: 900,
         height: 500,
         alwaysOnTop: true,
-        frame: false,
+        frame: true,
         transparent:false
     })
 

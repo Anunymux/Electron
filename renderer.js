@@ -10,7 +10,7 @@ const fs = require('fs')
 const readline = require('readline')
 
 $( document ).ready(function() {
-	PresentErrorNicely()
+	PresentErrorNicely('das ist ein Test')
 	console.log("ready!")
 
 	document.ondragover = document.ondrop = (ev) => {
@@ -66,8 +66,23 @@ function ReadFileFromDropAsync(ev){
 	console.log('end of line reached')
 }
 
-function PresentErrorNicely(){
+function PresentErrorNicely(err){
 	var toastr = require('toastr')
-	toastr.info('Enjoy!')
+	toastr.options = {
+		"newestOnTop": false,
+		"positionClass": "toast-top-right",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "999999",
+		"hideDuration": "999999",
+		"timeOut":"999999",
+		"extendedTimeOut":"999999",
+		"closeButton":true,
+		"tapToDismiss": false,
+		"progressBar":true
+	}
+
+	toastr["error"](`An error is occured: \n ${err}`)
+
 }
 
