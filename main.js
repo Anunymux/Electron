@@ -12,7 +12,7 @@ app.on('ready', _ => {
 
     var win = new BrowserWindow({
         width: 400,
-        height: 800,
+        height: 400,
         alwaysOnTop: true,
         frame: true,
         transparent:false
