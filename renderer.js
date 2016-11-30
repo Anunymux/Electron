@@ -72,7 +72,7 @@ function PresentErrorNicely(err){
 		"newestOnTop": false,
 		"positionClass": "toast-top-right",
 		"preventDuplicates": false,
-		"onclick": null,
+		"onclick": null, 
 		"showDuration": "999999",
 		"hideDuration": "999999",
 		"timeOut":"999999",
