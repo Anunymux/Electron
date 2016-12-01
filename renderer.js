@@ -26,7 +26,9 @@ $( document ).ready(function() {
 function ReadFileFromDrop(ev) {
 	var file = ev.dataTransfer.files[0]
 	console.log(file.path)		
-	
+
+
+
 	fs.readFile(file.path, function (err, logData) {
 		if (err) {
 			if (err.code == 'EISDIR') {
