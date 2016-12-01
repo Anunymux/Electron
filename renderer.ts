@@ -3,8 +3,6 @@ console.log('in renderer')
 const toastr = require('toastr')
 
 import fs = require('fs')
-/*const fs = require('fs')*/
-
 
 if (typeof jQuery == "undefined") {
 	alert("jQuery is not installed")
