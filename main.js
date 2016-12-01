@@ -59,6 +59,3 @@ process.on('uncaughtException', function (err) {
     PresentErrorNicely(err)
     alert(`Event: ${event}`)
 })
-
-
-

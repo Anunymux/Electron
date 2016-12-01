@@ -1,13 +1,17 @@
 console.log('in renderer')
 
 const toastr = require('toastr')
-const fs = require('fs')
+
+import fs = require('fs')
+/*const fs = require('fs')*/
+
 
 if (typeof jQuery == "undefined") {
 	alert("jQuery is not installed")
 }else{
 	console.log('jQuery is installed')
 }
+
 
 $( document ).ready(function() {
 	console.log("ready!")
@@ -23,12 +27,10 @@ $( document ).ready(function() {
 	}
 });
 
-function ReadFileFromDrop(ev) {
-	var file = ev.dataTransfer.files[0]
-	console.log(file.path)		
-
-
-
+function ReadFileFromDrop(ev:DragEvent) {
+	var file:File = ev.dataTransfer.files[0]
+	console.log(file.path)	
+		
 	fs.readFile(file.path, function (err, logData) {
 		if (err) {
 			if (err.code == 'EISDIR') {
@@ -37,20 +39,20 @@ function ReadFileFromDrop(ev) {
 				alert(err.message)
 			}
 		}else{ 
-			var text = logData.toString()
+			var text:string = logData.toString()
 			$('#droppedContent').text(text)
 		}
 	})
 	ev.preventDefault()
 }
 
-function ReadFileFromDropAsync(ev){
-	var file = ev.dataTransfer.files[0]
+function ReadFileFromDropAsync(ev:DragEvent){
+	var file:File = ev.dataTransfer.files[0]
 	console.log('ReadFileFromDropAsync')
 	toastr.info('ReadFileFromDropAsync')
 }
 
-function PresentErrorNicely(err){
+function PresentErrorNicely(errMessage:string){
 	
 	toastr.options = {
 		"newestOnTop": false,
@@ -66,9 +68,9 @@ function PresentErrorNicely(err){
 		"progressBar":false
 	}
 
-	toastr["error"](err, 'An error has ocured')
+	toastr["error"](errMessage, 'An error has ocured')
 }
 
-process.on('uncaughtException', function (err) { 
+process.on('uncaughtException', function (err:string) { 
     PresentErrorNicely(err)
 })
