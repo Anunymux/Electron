@@ -10,10 +10,9 @@ if (typeof jQuery == "undefined") {
 	console.log('jQuery is installed')
 }
 
-
 $( document ).ready(function() {
 	console.log("ready!")
-	toastr.info('ready!')
+	toastr.info('Hi!')
 
 	document.ondragover = document.ondrop = (ev) => {
 		ev.preventDefault()

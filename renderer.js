@@ -10,7 +10,7 @@ else {
 }
 $(document).ready(function () {
     console.log("ready!");
-    toastr.info('ready!');
+    toastr.info('Hi!');
     document.ondragover = document.ondrop = (ev) => {
         ev.preventDefault();
     };
