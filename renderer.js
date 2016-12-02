@@ -1,7 +1,15 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments)).next());
+    });
+};
 console.log('in renderer');
 const toastr = require('toastr');
-const fs = require('fs');
+const fsa = require('async-file');
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
 }
@@ -15,33 +23,25 @@ $(document).ready(function () {
         ev.preventDefault();
     };
     document.body.ondrop = (ev) => {
-        //ReadFileFromDrop(ev)
-        ReadFileFromDropAsync(ev);
+        ReadFileFromDrop(ev);
     };
 });
 function ReadFileFromDrop(ev) {
-    var file = ev.dataTransfer.files[0];
-    console.log(file.path);
-    fs.readFile(file.path, function (err, logData) {
-        if (err) {
-            if (err.code == 'EISDIR') {
+    return __awaiter(this, void 0, void 0, function* () {
+        var file = ev.dataTransfer.files[0];
+        toastr.info(`ReadFileFromDrop:${file.name}`);
+        console.log(file.path);
+        var fileContent = yield fsa.readFile(file.path).catch((reason) => {
+            if (reason.code == 'EISDIR') {
                 alert('Drag and drop ist nur für Dateien vorgesehen.');
             }
             else {
-                alert(err.message);
+                alert(reason.message);
             }
-        }
-        else {
-            var text = logData.toString();
-            $('#droppedContent').text(text);
-        }
+        });
+        $('#droppedContent').text(fileContent);
+        ev.preventDefault();
     });
-    ev.preventDefault();
-}
-function ReadFileFromDropAsync(ev) {
-    var file = ev.dataTransfer.files[0];
-    console.log('ReadFileFromDropAsync');
-    toastr.info('ReadFileFromDropAsync');
 }
 function PresentErrorNicely(errMessage) {
     toastr.options = {

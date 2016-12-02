@@ -3,6 +3,7 @@ console.log('in renderer')
 const toastr = require('toastr')
 
 import fs = require('fs')
+import * as fsa from 'async-file';
 
 if (typeof jQuery == "undefined") {
 	alert("jQuery is not installed")
@@ -19,34 +20,25 @@ $( document ).ready(function() {
 	}
 	
 	document.body.ondrop = (ev) => {
-		//ReadFileFromDrop(ev)
-		ReadFileFromDropAsync(ev)
+		ReadFileFromDrop(ev)
 	}
 });
 
-function ReadFileFromDrop(ev:DragEvent) {
+async function ReadFileFromDrop(ev:DragEvent) {
 	var file:File = ev.dataTransfer.files[0]
+	toastr.info(`ReadFileFromDrop:${file.name}`)
 	console.log(file.path)	
 		
-	fs.readFile(file.path, function (err, logData) {
-		if (err) {
-			if (err.code == 'EISDIR') {
-				alert('Drag and drop ist nur für Dateien vorgesehen.')
-			} else {
-				alert(err.message)
-			}
-		}else{ 
-			var text:string = logData.toString()
-			$('#droppedContent').text(text)
+	var fileContent:string = await fsa.readFile(file.path).catch( (reason:NodeJS.ErrnoException) => {
+		if(reason.code == 'EISDIR'){
+			alert('Drag and drop ist nur für Dateien vorgesehen.')
+		} else {
+			alert(reason.message)
 		}
 	})
-	ev.preventDefault()
-}
+	$('#droppedContent').text(fileContent)
 
-function ReadFileFromDropAsync(ev:DragEvent){
-	var file:File = ev.dataTransfer.files[0]
-	console.log('ReadFileFromDropAsync')
-	toastr.info('ReadFileFromDropAsync')
+	ev.preventDefault()
 }
 
 function PresentErrorNicely(errMessage:string){
