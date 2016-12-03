@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 console.log('in renderer');
 const toastr = require('toastr');
+const fs = require('fs');
 const fsa = require('async-file');
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
@@ -16,16 +17,52 @@ if (typeof jQuery == "undefined") {
 else {
     console.log('jQuery is installed');
 }
-$(document).ready(function () {
+$(document).ready(() => {
     console.log("ready!");
     toastr.info('Hi!');
     document.ondragover = document.ondrop = (ev) => {
         ev.preventDefault();
     };
     document.body.ondrop = (ev) => {
-        ReadFileFromDrop(ev);
+        //ReadFileFromDrop(ev)
+        ReadFileOffsetFromDrop(ev);
     };
 });
+function ReadFileOffsetFromDrop(ev) {
+    toastr.clear();
+    var file = ev.dataTransfer.files[0];
+    toastr.info(`ReadFileFromDrop:${file.name}`);
+    var bytesFrom = $('#bytesFrom').val();
+    var bytesTil = $('#bytesTil').val();
+    var regOnlyNumbers = /^[0-9]+$/g;
+    if (!!bytesFrom.match(regOnlyNumbers) == false) {
+        alert(`Bitte nur Zahlen für die Byteanzahl "von" verwenden. ${bytesFrom} ist nicht gültig. Danke.`);
+        return;
+    }
+    if (!!bytesTil.match(regOnlyNumbers) == false) {
+        alert(`Bitte nur Zahlen für die Byteanzahl "bis" verwenden. ${bytesTil} ist nicht gültig. Danke.`);
+        return;
+    }
+    var start = parseInt(bytesFrom);
+    var end = parseInt(bytesTil);
+    console.log(`${start} - ${end}`);
+    var filePartOfContent = fs.createReadStream(file.path, { start: start, end: end });
+    var data = '';
+    filePartOfContent.on('data', (chunk) => {
+        data += chunk;
+    });
+    filePartOfContent.on('end', () => {
+        $('#droppedContent').text(data);
+        toastr['success']('DONE');
+    });
+    filePartOfContent.on('error', (err) => {
+        if (err.code == 'EISDIR') {
+            alert('Drag and Drop wird für Ordner nicht unterstützt.');
+            return;
+        }
+        PresentErrorNicely(err);
+    });
+}
 function ReadFileFromDrop(ev) {
     return __awaiter(this, void 0, void 0, function* () {
         var file = ev.dataTransfer.files[0];
@@ -43,7 +80,7 @@ function ReadFileFromDrop(ev) {
         ev.preventDefault();
     });
 }
-function PresentErrorNicely(errMessage) {
+function PresentErrorNicely(err) {
     toastr.options = {
         "newestOnTop": false,
         "positionClass": "toast-top-right",
@@ -57,8 +94,9 @@ function PresentErrorNicely(errMessage) {
         "tapToDismiss": false,
         "progressBar": false
     };
-    toastr["error"](errMessage, 'An error has ocured');
+    toastr["error"](err.message, 'An error has ocured');
 }
 process.on('uncaughtException', function (err) {
     PresentErrorNicely(err);
+    console.log(err);
 });

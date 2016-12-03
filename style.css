@@ -16,10 +16,10 @@ textarea{
     resize: none;
 }
 
-input{
+/*input{
     -webkit-app-region: no-drag;
     word-wrap: normal;
     margin-left: auto;
     margin-right: auto; 
     width: 100%;
-}
+}*/
