@@ -1,7 +1,7 @@
 const electron = require('electron')
 
 require('electron-reload')(__dirname);
-require('electron-debug')({ showDevTools: true });
+require('electron-debug')({ showDevTools: false });
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -12,7 +12,7 @@ app.on('ready', _ => {
 
     var win = new BrowserWindow({
         width: 1000,
-        height: 800,
+        height: 600,
         alwaysOnTop: true,
         frame: true,
         transparent:false

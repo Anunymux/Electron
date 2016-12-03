@@ -1,16 +1,7 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
-    });
-};
 console.log('in renderer');
 const toastr = require('toastr');
 const fs = require('fs');
-const fsa = require('async-file');
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
 }
@@ -19,12 +10,10 @@ else {
 }
 $(document).ready(() => {
     console.log("ready!");
-    toastr.info('Hi!');
     document.ondragover = document.ondrop = (ev) => {
         ev.preventDefault();
     };
     document.body.ondrop = (ev) => {
-        //ReadFileFromDrop(ev)
         ReadFileOffsetFromDrop(ev);
     };
     $('#reloadButton').on('click', () => {
@@ -80,23 +69,6 @@ function PopulateContentFromFile(filePath) {
             return;
         }
         PresentErrorNicely(err);
-    });
-}
-function ReadFileFromDrop(ev) {
-    return __awaiter(this, void 0, void 0, function* () {
-        var file = ev.dataTransfer.files[0];
-        toastr.info(`ReadFileFromDrop:${file.name}`);
-        console.log(file.path);
-        var fileContent = yield fsa.readFile(file.path).catch((reason) => {
-            if (reason.code == 'EISDIR') {
-                alert('Drag and drop ist nur für Dateien vorgesehen.');
-            }
-            else {
-                alert(reason.message);
-            }
-        });
-        $('#droppedContent').text(fileContent);
-        ev.preventDefault();
     });
 }
 function PresentErrorNicely(err) {

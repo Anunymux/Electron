@@ -13,14 +13,12 @@ if (typeof jQuery == "undefined") {
 
 $( document ).ready( () => {
 	console.log("ready!")
-	toastr.info('Hi!')
-
+	
 	document.ondragover = document.ondrop = (ev) => {
 		ev.preventDefault()
 	}
 	
 	document.body.ondrop = (ev) => {
-		//ReadFileFromDrop(ev)
 		ReadFileOffsetFromDrop(ev)
 	}
 
@@ -93,23 +91,6 @@ function PopulateContentFromFile(filePath:string){
 		}
 		PresentErrorNicely(err)
 	})
-}
-
-async function ReadFileFromDrop(ev:DragEvent) {
-	var file:File = ev.dataTransfer.files[0]
-	toastr.info(`ReadFileFromDrop:${file.name}`)
-	console.log(file.path)	
-		
-	var fileContent:string = await fsa.readFile(file.path).catch( (reason:NodeJS.ErrnoException) => {
-		if(reason.code == 'EISDIR'){
-			alert('Drag and drop ist nur für Dateien vorgesehen.')
-		} else {
-			alert(reason.message)
-		}
-	})
-	$('#droppedContent').text(fileContent)
-
-	ev.preventDefault()
 }
 
 function PresentErrorNicely(err:NodeJS.ErrnoException){
