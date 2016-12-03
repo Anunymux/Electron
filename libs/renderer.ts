@@ -23,14 +23,25 @@ $( document ).ready( () => {
 		//ReadFileFromDrop(ev)
 		ReadFileOffsetFromDrop(ev)
 	}
+
+	$('#reloadButton').on('click', () => {
+		PopulateContentFromFile($('#infoFilePath').text())
+	})
 });
 
 function ReadFileOffsetFromDrop(ev:DragEvent){
 	toastr.clear()
 	var file:File = ev.dataTransfer.files[0]
-	toastr.info(`ReadFileFromDrop:${file.name}`)
 
+	$('#infoFileName').text(file.name)
+	$('#infoFilePath').text(file.path)
+	$('#infoFileLength').text(file.size)
 
+	PopulateContentFromFile(file.path)
+}
+
+function PopulateContentFromFile(filePath:string){
+	
 	var bytesFrom:string = $('#bytesFrom').val()
 	var bytesTil:string = $('#bytesTil').val()
 	var regOnlyNumbers:RegExp = /^[0-9]+$/g;
@@ -50,7 +61,14 @@ function ReadFileOffsetFromDrop(ev:DragEvent){
 
 	console.log(`${start} - ${end}`)
 
-	var filePartOfContent:fs.ReadStream = fs.createReadStream(file.path, {start: start, end: end});
+	//Test if range is too high and if it even makes sense to read content
+
+	if (end - start > 100000) {
+		alert('Die Range ist zu groß und würde zu lange dauern.')
+		return
+	}
+
+	var filePartOfContent:fs.ReadStream = fs.createReadStream(filePath, {start: start, end: end})
 	var data:string = ''
 
 	filePartOfContent.on('data', (chunk) => {
@@ -59,7 +77,13 @@ function ReadFileOffsetFromDrop(ev:DragEvent){
 	
 	filePartOfContent.on('end', () => {
 		$('#droppedContent').text(data)
-		toastr['success']('DONE')
+		$("#reloadButton").notify('Done', {
+			elementPosition:"right",
+			className:"success",
+			autoHideDelay: 1000,
+			hideDuration:0,
+			showDuration:0
+		})
 	})
 
 	filePartOfContent.on('error', (err: NodeJS.ErrnoException) => {

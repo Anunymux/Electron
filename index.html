@@ -2,14 +2,30 @@
     <head>
         <title>Mein Titel</title>
 
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./node_modules/toastr/build/toastr.min.css">
 
-        <script>window.$ = window.jQuery = require('jquery')</script>
-        
+        <!-- muss vor Scripts stehen -->
+        <script>
+            if (typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }
+        </script>
+
+        <script src="./libs/jquery-3.1.1.min.js"></script>
+        <script src="./libs/notify.min.js"></script>
+
+        <script src="./libs/renderer.js"></script>
+
+        <!-- muss nach Scripts stehen -->
+        <script>
+            if (window.module) module = window.module;
+        </script>
+
     </head>
 
-    <body style="-webkit-app-region: drag">
+    <body>
         <h1>Instant Any</h1>
 
         <fieldset>
@@ -19,8 +35,11 @@
             <input id="bytesTil" type="text" value="1000">
             <button id="reloadButton">Reload</button><p></p>
 
-            <label for="infoFileName">File name:</label>
+            <label for="infoFileName">File name  :</label>
             <span id="infoFileName"></span><br>
+
+            <label for="infoFilePath">File path...:</label>
+            <span id="infoFilePath"></span><br>
 
             <label for="infoFileLength">File length:</label>
             <span id="infoFileLength"></span><br>
@@ -34,6 +53,4 @@
         </fieldset>
 
     </body>
-    
-    <script>require('./renderer.js')</script>
 </html>

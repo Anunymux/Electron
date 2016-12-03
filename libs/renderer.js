@@ -27,11 +27,19 @@ $(document).ready(() => {
         //ReadFileFromDrop(ev)
         ReadFileOffsetFromDrop(ev);
     };
+    $('#reloadButton').on('click', () => {
+        PopulateContentFromFile($('#infoFilePath').text());
+    });
 });
 function ReadFileOffsetFromDrop(ev) {
     toastr.clear();
     var file = ev.dataTransfer.files[0];
-    toastr.info(`ReadFileFromDrop:${file.name}`);
+    $('#infoFileName').text(file.name);
+    $('#infoFilePath').text(file.path);
+    $('#infoFileLength').text(file.size);
+    PopulateContentFromFile(file.path);
+}
+function PopulateContentFromFile(filePath) {
     var bytesFrom = $('#bytesFrom').val();
     var bytesTil = $('#bytesTil').val();
     var regOnlyNumbers = /^[0-9]+$/g;
@@ -46,14 +54,25 @@ function ReadFileOffsetFromDrop(ev) {
     var start = parseInt(bytesFrom);
     var end = parseInt(bytesTil);
     console.log(`${start} - ${end}`);
-    var filePartOfContent = fs.createReadStream(file.path, { start: start, end: end });
+    //Test if range is too high and if it even makes sense to read content
+    if (end - start > 100000) {
+        alert('Die Range ist zu groß und würde zu lange dauern.');
+        return;
+    }
+    var filePartOfContent = fs.createReadStream(filePath, { start: start, end: end });
     var data = '';
     filePartOfContent.on('data', (chunk) => {
         data += chunk;
     });
     filePartOfContent.on('end', () => {
         $('#droppedContent').text(data);
-        toastr['success']('DONE');
+        $("#reloadButton").notify('Done', {
+            elementPosition: "right",
+            className: "success",
+            autoHideDelay: 1000,
+            hideDuration: 0,
+            showDuration: 0
+        });
     });
     filePartOfContent.on('error', (err) => {
         if (err.code == 'EISDIR') {

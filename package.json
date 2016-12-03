@@ -13,6 +13,7 @@
     "@types/electron-window-state": "^2.0.28",
     "@types/jquery": "^2.0.34",
     "@types/line-reader": "0.0.28",
+    "@types/notify": "0.0.28",
     "@types/underscore": "^1.7.35",
     "async-file": "^2.0.2",
     "electron-debug": "^1.1.0",
