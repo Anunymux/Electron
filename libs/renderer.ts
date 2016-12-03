@@ -45,12 +45,12 @@ function PopulateContentFromFile(filePath:string){
 	var regOnlyNumbers:RegExp = /^[0-9]+$/g;
 
 	if (!!bytesFrom.match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
-		alert(`Bitte nur Zahlen für die Byteanzahl "von" verwenden. ${bytesFrom} ist nicht gültig. Danke.`)
+		alert(`Please only use numbers. ${bytesFrom} is not valid. Thank you.`)
 		return
 	}
 
 	if (!!bytesTil.match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
-		alert(`Bitte nur Zahlen für die Byteanzahl "bis" verwenden. ${bytesTil} ist nicht gültig. Danke.`)
+		alert(`Please only use numbers. ${bytesTil} is not valid. Thank you.`)
 		return
 	}
 
@@ -62,7 +62,7 @@ function PopulateContentFromFile(filePath:string){
 	//Test if range is too high and if it even makes sense to read content
 
 	if (end - start > 100000) {
-		alert('Die Range ist zu groß und würde zu lange dauern.')
+		alert('The selected range is too high and would take too long to process.')
 		return
 	}
 
@@ -84,11 +84,16 @@ function PopulateContentFromFile(filePath:string){
 		})
 	})
 
-	filePartOfContent.on('error', (err: NodeJS.ErrnoException) => {
+	filePartOfContent.on('error', (err: NodeJS.ErrnoException) => {		
 		if (err.code == 'EISDIR') {
-			alert('Drag and Drop wird für Ordner nicht unterstützt.')
+			alert('Drag and Drop is not supported for folders.')
 			return
 		}
+		if (err.code == 'ENOENT') {
+			alert('Please select a file first using drag and drop.')
+			return
+		}
+		
 		PresentErrorNicely(err)
 	})
 }

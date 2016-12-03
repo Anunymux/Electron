@@ -33,11 +33,11 @@ function PopulateContentFromFile(filePath) {
     var bytesTil = $('#bytesTil').val();
     var regOnlyNumbers = /^[0-9]+$/g;
     if (!!bytesFrom.match(regOnlyNumbers) == false) {
-        alert(`Bitte nur Zahlen für die Byteanzahl "von" verwenden. ${bytesFrom} ist nicht gültig. Danke.`);
+        alert(`Please only use numbers. ${bytesFrom} is not valid. Thank you.`);
         return;
     }
     if (!!bytesTil.match(regOnlyNumbers) == false) {
-        alert(`Bitte nur Zahlen für die Byteanzahl "bis" verwenden. ${bytesTil} ist nicht gültig. Danke.`);
+        alert(`Please only use numbers. ${bytesTil} is not valid. Thank you.`);
         return;
     }
     var start = parseInt(bytesFrom);
@@ -45,7 +45,7 @@ function PopulateContentFromFile(filePath) {
     console.log(`${start} - ${end}`);
     //Test if range is too high and if it even makes sense to read content
     if (end - start > 100000) {
-        alert('Die Range ist zu groß und würde zu lange dauern.');
+        alert('The selected range is too high and would take too long to process.');
         return;
     }
     var filePartOfContent = fs.createReadStream(filePath, { start: start, end: end });
@@ -65,7 +65,11 @@ function PopulateContentFromFile(filePath) {
     });
     filePartOfContent.on('error', (err) => {
         if (err.code == 'EISDIR') {
-            alert('Drag and Drop wird für Ordner nicht unterstützt.');
+            alert('Drag and Drop is not supported for folders.');
+            return;
+        }
+        if (err.code == 'ENOENT') {
+            alert('Please select a file first using drag and drop.');
             return;
         }
         PresentErrorNicely(err);
