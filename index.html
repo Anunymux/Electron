@@ -26,31 +26,47 @@
     </head>
 
     <body>
-        <h1>Instant Any</h1>
 
-        <fieldset>
-            <legend>Bytes to read</legend>
+        <div id="wrapper">
+
+            <div id="top">
+                <h1>Instant Any</h1>
+
+                <fieldset>
+                    <legend>Bytes to read</legend>
+                    
+                    <input id="bytesFrom" type="text" value="0"> -
+                    <input id="bytesTil" type="text" value="10000">
+                    <button id="reloadButton">Reload</button><p></p>
+
+                    <label for="infoFileName">File name  :</label>
+                    <span id="infoFileName"></span><br>
+
+                    <label for="infoFilePath">File path...:</label>
+                    <span id="infoFilePath"></span><br>
+
+                    <label for="infoFileLength">File length:</label>
+                    <span id="infoFileLength"></span><br>
+                </fieldset>        
+
+            </div>   
             
-            <input id="bytesFrom" type="text" value="0"> -
-            <input id="bytesTil" type="text" value="10000">
-            <button id="reloadButton">Reload</button><p></p>
+            <p></p>
 
-            <label for="infoFileName">File name  :</label>
-            <span id="infoFileName"></span><br>
+            <div id="bottom">
+                <fieldset id="lowerFieldSet">
+                    <legend>Drop files hereeee</legend>
+                    <textarea id="droppedContent"  id="bottom"></textarea>
+                </fieldset>
 
-            <label for="infoFilePath">File path...:</label>
-            <span id="infoFilePath"></span><br>
+            </div>
+            
 
-            <label for="infoFileLength">File length:</label>
-            <span id="infoFileLength"></span><br>
-        </fieldset>    
+            
+
+        </div>
+
         
-        <p></p>
-
-        <fieldset id="anchored">
-            <legend>Drop files hereeee</legend>
-            <textarea id="droppedContent" readonly></textarea>
-        </fieldset>
 
     </body>
 </html>

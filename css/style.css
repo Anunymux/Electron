@@ -1,5 +1,7 @@
-body{
+html, body{
     background-color: #ECEFF1;
+/*    width: 90%;
+    height: 100%;*/
     /*margin: 0;*/
 }
 
@@ -12,7 +14,8 @@ textarea{
     word-wrap: normal;
     margin-left: auto;
     margin-right: auto; 
+    overflow: auto;
     width: 100%;
-    height: 60%;
-    resize: none;
+/*    height: 60vmax;*/
+    resize: vertical;
 }
