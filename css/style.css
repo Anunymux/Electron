@@ -5,9 +5,13 @@ html, body{
     /*margin: 0;*/
 }
 
-/*h1{
+h1{
     text-align: center;
-}*/
+}
+
+input{
+    background-color: #ECEFF1;
+}
 
 textarea{
     -webkit-app-region: no-drag;
