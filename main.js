@@ -17,6 +17,7 @@ app.on('ready', _ => {
         frame: true,
         transparent:false
     })
+    win.setMenu(null)
 
     win.on('close', function () {
         console.log('Closed!');
