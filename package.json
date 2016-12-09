@@ -15,15 +15,17 @@
     "@types/line-reader": "0.0.28",
     "@types/notify": "0.0.28",
     "@types/underscore": "^1.7.35",
+    "@types/vue": "^1.0.31",
     "async-file": "^2.0.2",
     "electron-debug": "^1.1.0",
     "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "vue": "^2.1.4"
   },
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron-prebuilt": "^1.4.8",
-    "typescript": "^2.0.10"
+    "typescript": "^2.1.4"
   }
 }
