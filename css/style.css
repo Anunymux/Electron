@@ -1,5 +1,7 @@
-body{
+html, body{
     background-color: #ECEFF1;
+/*    width: 90%;
+    height: 100%;*/
     /*margin: 0;*/
 }
 
@@ -7,12 +9,17 @@ h1{
     text-align: center;
 }
 
+input{
+    background-color: #ECEFF1;
+}
+
 textarea{
     -webkit-app-region: no-drag;
     word-wrap: normal;
     margin-left: auto;
     margin-right: auto; 
+    overflow: auto;
     width: 100%;
-    height: 60%;
+    height: 100%;
     resize: none;
 }

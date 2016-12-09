@@ -20,8 +20,13 @@
     "electron-debug": "^1.1.0",
     "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",
+<<<<<<< HEAD
     "toastr": "^2.1.2",
     "vue": "^2.1.4"
+=======
+    "jquerymy": "^1.2.8",
+    "toastr": "^2.1.2"
+>>>>>>> 7450c70eae70c885fb3e28585c421843e5300ad1
   },
   "devDependencies": {
     "devtron": "^1.4.0",

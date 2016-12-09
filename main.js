@@ -12,11 +12,12 @@ app.on('ready', _ => {
 
     var win = new BrowserWindow({
         width: 1000,
-        height: 600,
-        alwaysOnTop: true,
+        height: 500,
+        alwaysOnTop: false,
         frame: true,
         transparent:false
     })
+    /*win.setMenu(null)*/
 
     win.on('close', function () {
         console.log('Closed!');

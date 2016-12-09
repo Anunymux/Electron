@@ -1,6 +1,7 @@
 console.log('in renderer')
 
 const toastr = require('toastr')
+require('sugar')
 
 import fs = require('fs')
 import * as fsa from 'async-file';
@@ -25,7 +26,48 @@ $( document ).ready( () => {
 	$('#reloadButton').on('click', () => {
 		PopulateContentFromFile($('#infoFilePath').text())
 	})
+
+	$('#selByteRange').on('change', () => {
+		PopulateRangeInputs()
+	})
+
 });
+
+function PopulateRangeInputs(){
+	var selElement:string = $('#selByteRange').val()
+	
+	if ($('#infoFileLength').text() == '') {
+		alert('Please drop a file first and then click refresh.')
+		return
+	}
+
+	var length:number = parseInt($('#infoFileLength').text())
+	var fromRange:number = 0
+	var tilRange:number = 0
+
+	console.log(selElement)
+	console.log(length)
+
+	if (selElement == 'first') {	
+		fromRange=0
+		tilRange=10000
+	}
+
+	if (selElement == 'middle') {	
+
+		fromRange=Math.round(length / 2)
+		tilRange=fromRange + 10000
+	}
+
+	if (selElement == 'end') {	
+		fromRange=length - 10000
+		tilRange=length
+	}
+
+	$('#bytesFrom').val(fromRange)
+	$('#bytesTil').val(tilRange)
+
+}
 
 function ReadFileOffsetFromDrop(ev:DragEvent){
 	toastr.clear()
