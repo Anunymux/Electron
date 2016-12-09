@@ -1,6 +1,7 @@
 console.log('in renderer')
 
 const toastr = require('toastr')
+require('sugar')
 
 import fs = require('fs')
 import * as fsa from 'async-file';
@@ -29,6 +30,7 @@ $( document ).ready( () => {
 	$('#selByteRange').on('change', () => {
 		PopulateRangeInputs()
 	})
+
 });
 
 function PopulateRangeInputs(){

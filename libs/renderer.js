@@ -1,6 +1,7 @@
 "use strict";
 console.log('in renderer');
 const toastr = require('toastr');
+require('sugar');
 const fs = require('fs');
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
