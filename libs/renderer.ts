@@ -1,10 +1,13 @@
 console.log('in renderer')
 
 const toastr = require('toastr')
-require('sugar')
 
 import fs = require('fs')
-import * as fsa from 'async-file';
+import * as fsa from 'async-file'
+
+var appVars = {
+	myName:'Johannes' 
+}
 
 if (typeof jQuery == "undefined") {
 	alert("jQuery is not installed")
@@ -28,12 +31,18 @@ $( document ).ready( () => {
 	})
 
 	$('#selByteRange').on('change', () => {
+		
 		PopulateRangeInputs()
 	})
 
-});
+	var app = new Vue({
+		el: '#app',
+		data: appVars
+	})
+})
 
 function PopulateRangeInputs(){
+	
 	var selElement:string = $('#selByteRange').val()
 	
 	if ($('#infoFileLength').text() == '') {
@@ -87,12 +96,12 @@ function PopulateContentFromFile(filePath:string){
 	var regOnlyNumbers:RegExp = /^[0-9]+$/g;
 
 	if (!!bytesFrom.match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
-		alert(`Please only use numbers. ${bytesFrom} is not valid. Thank you.`)
+		alert(`Please only use numbers, ${appVars.myName}. ${bytesFrom} is not valid. Thank you.`)
 		return
 	}
 
 	if (!!bytesTil.match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
-		alert(`Please only use numbers. ${bytesTil} is not valid. Thank you.`)
+		alert(`Please only use numbers, ${appVars.myName}. ${bytesTil} is not valid. Thank you.`)
 		return
 	}
 
@@ -128,11 +137,11 @@ function PopulateContentFromFile(filePath:string){
 
 	filePartOfContent.on('error', (err: NodeJS.ErrnoException) => {		
 		if (err.code == 'EISDIR') {
-			alert('Drag and Drop is not supported for folders.')
+			alert(`Drag and Drop is not supported for folders, ${appVars.myName}.`)
 			return
 		}
 		if (err.code == 'ENOENT') {
-			alert('Please select a file first using drag and drop.')
+			alert(`Please select a file first using drag and drop, ${appVars.myName}.`)
 			return
 		}
 		
@@ -156,7 +165,7 @@ function PresentErrorNicely(err:NodeJS.ErrnoException){
 		"progressBar":false
 	}
 
-	toastr["error"](err.message, 'An error has ocured')
+	toastr["error"](err.message, `An error has ocured, ${appVars.myName}.`)
 }
 
 process.on('uncaughtException', function (err:NodeJS.ErrnoException) { 

@@ -13,9 +13,9 @@
             }
         </script>
 
+        <script src="./libs/vue.js"></script>
         <script src="./libs/jquery-3.1.1.min.js"></script>
         <script src="./libs/notify.min.js"></script>
-        <script src="./libs/jquerymy-1.2.8.min.js"></script>
 
         <script src="./libs/renderer.js"></script>
 
@@ -31,17 +31,15 @@
 
         <div id="wrapper">
 
-
             <div id="top">
-                <!--<h1>Instant Any</h1>-->
-
-                <div id="form">
-                    <input type="text" id="name" />
-                    <input type="range" id="age" />
-                </div>
+                <h1>Instant Any</h1>
 
                 <fieldset>
                     <legend>Options</legend>
+                    
+                    <div id="app">
+                        Hallo {{ myName }}
+                    </div>
                     
                     <input id="bytesFrom" type="text" value="0"> -
                     <input id="bytesTil" type="text" value="10000">

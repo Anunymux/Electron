@@ -1,8 +1,10 @@
 "use strict";
 console.log('in renderer');
 const toastr = require('toastr');
-require('sugar');
-const fs = require('fs');
+const fs = require("fs");
+var appVars = {
+    myName: 'Johannes'
+};
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
 }
@@ -22,6 +24,10 @@ $(document).ready(() => {
     });
     $('#selByteRange').on('change', () => {
         PopulateRangeInputs();
+    });
+    var app = new Vue({
+        el: '#app',
+        data: appVars
     });
 });
 function PopulateRangeInputs() {
@@ -63,11 +69,11 @@ function PopulateContentFromFile(filePath) {
     var bytesTil = $('#bytesTil').val();
     var regOnlyNumbers = /^[0-9]+$/g;
     if (!!bytesFrom.match(regOnlyNumbers) == false) {
-        alert(`Please only use numbers. ${bytesFrom} is not valid. Thank you.`);
+        alert(`Please only use numbers, ${appVars.myName}. ${bytesFrom} is not valid. Thank you.`);
         return;
     }
     if (!!bytesTil.match(regOnlyNumbers) == false) {
-        alert(`Please only use numbers. ${bytesTil} is not valid. Thank you.`);
+        alert(`Please only use numbers, ${appVars.myName}. ${bytesTil} is not valid. Thank you.`);
         return;
     }
     var start = parseInt(bytesFrom);
@@ -95,11 +101,11 @@ function PopulateContentFromFile(filePath) {
     });
     filePartOfContent.on('error', (err) => {
         if (err.code == 'EISDIR') {
-            alert('Drag and Drop is not supported for folders.');
+            alert(`Drag and Drop is not supported for folders, ${appVars.myName}.`);
             return;
         }
         if (err.code == 'ENOENT') {
-            alert('Please select a file first using drag and drop.');
+            alert(`Please select a file first using drag and drop, ${appVars.myName}.`);
             return;
         }
         PresentErrorNicely(err);
@@ -119,7 +125,7 @@ function PresentErrorNicely(err) {
         "tapToDismiss": false,
         "progressBar": false
     };
-    toastr["error"](err.message, 'An error has ocured');
+    toastr["error"](err.message, `An error has ocured, ${appVars.myName}.`);
 }
 process.on('uncaughtException', function (err) {
     PresentErrorNicely(err);
