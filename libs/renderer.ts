@@ -6,7 +6,14 @@ import fs = require('fs')
 import * as fsa from 'async-file'
 
 var appVars = {
-	myName:'Johannes' 
+	bytesFrom:0,
+	bytesTil:10000,
+	myName:'Johannes',
+	droppedFile:{
+		name:'nothing dropped yet',
+		length:0,
+		path:'nothing dropped yet'
+	}
 }
 
 if (typeof jQuery == "undefined") {
@@ -17,6 +24,11 @@ if (typeof jQuery == "undefined") {
 
 $( document ).ready( () => {
 	console.log("ready!")
+
+	var app = new Vue({
+		el: '#wrapper',
+		data: appVars
+	})
 	
 	document.ondragover = document.ondrop = (ev) => {
 		ev.preventDefault()
@@ -33,11 +45,6 @@ $( document ).ready( () => {
 	$('#selByteRange').on('change', () => {
 		
 		PopulateRangeInputs()
-	})
-
-	var app = new Vue({
-		el: '#app',
-		data: appVars
 	})
 })
 
@@ -82,11 +89,11 @@ function ReadFileOffsetFromDrop(ev:DragEvent){
 	toastr.clear()
 	var file:File = ev.dataTransfer.files[0]
 
-	$('#infoFileName').text(file.name)
-	$('#infoFilePath').text(file.path)
-	$('#infoFileLength').text(file.size)
+	appVars.droppedFile.name = file.name
+	appVars.droppedFile.length = file.size
+	appVars.droppedFile.path = file.path
 
-	PopulateContentFromFile(file.path)
+	/*PopulateContentFromFile(file.path)*/
 }
 
 function PopulateContentFromFile(filePath:string){

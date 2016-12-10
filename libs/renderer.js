@@ -3,7 +3,14 @@ console.log('in renderer');
 const toastr = require('toastr');
 const fs = require("fs");
 var appVars = {
-    myName: 'Johannes'
+    bytesFrom: 0,
+    bytesTil: 10000,
+    myName: 'Johannes',
+    droppedFile: {
+        name: 'nothing dropped yet',
+        length: 0,
+        path: 'nothing dropped yet'
+    }
 };
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
@@ -13,6 +20,10 @@ else {
 }
 $(document).ready(() => {
     console.log("ready!");
+    var app = new Vue({
+        el: '#wrapper',
+        data: appVars
+    });
     document.ondragover = document.ondrop = (ev) => {
         ev.preventDefault();
     };
@@ -24,10 +35,6 @@ $(document).ready(() => {
     });
     $('#selByteRange').on('change', () => {
         PopulateRangeInputs();
-    });
-    var app = new Vue({
-        el: '#app',
-        data: appVars
     });
 });
 function PopulateRangeInputs() {
@@ -59,10 +66,10 @@ function PopulateRangeInputs() {
 function ReadFileOffsetFromDrop(ev) {
     toastr.clear();
     var file = ev.dataTransfer.files[0];
-    $('#infoFileName').text(file.name);
-    $('#infoFilePath').text(file.path);
-    $('#infoFileLength').text(file.size);
-    PopulateContentFromFile(file.path);
+    appVars.droppedFile.name = file.name;
+    appVars.droppedFile.length = file.size;
+    appVars.droppedFile.path = file.path;
+    /*PopulateContentFromFile(file.path)*/
 }
 function PopulateContentFromFile(filePath) {
     var bytesFrom = $('#bytesFrom').val();

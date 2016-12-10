@@ -37,12 +37,10 @@
                 <fieldset>
                     <legend>Options</legend>
                     
-                    <div id="app">
-                        Hallo {{ myName }}
-                    </div>
+                    Hallo {{ myName }} <br>
                     
-                    <input id="bytesFrom" type="text" value="0"> -
-                    <input id="bytesTil" type="text" value="10000">
+                    <input v-model="bytesFrom" type="text"> -
+                    <input v-model="bytesTil" type="text">
                     
                     <select name="byteRange" id="selByteRange">
                         <option value="first" selected>First part</option>
@@ -53,13 +51,13 @@
                     <button id="reloadButton">Reload</button><p></p>
 
                     <label for="infoFileName">File name  :</label>
-                    <span id="infoFileName"></span><br>
+                    <span>{{droppedFile.name}}</span><br>
 
                     <label for="infoFilePath">File path...:</label>
-                    <span id="infoFilePath"></span><br>
+                    <span>{{droppedFile.path}}</span><br>
 
                     <label for="infoFileLength">File length:</label>
-                    <span id="infoFileLength"></span><br>
+                    <span>{{droppedFile.length}}</span><br>
                 </fieldset>        
 
             </div>
