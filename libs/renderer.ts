@@ -29,6 +29,9 @@ if (typeof jQuery == "undefined") {
 $( document ).ready( () => {
 	console.log("ready!")
 
+	Vue.config.debug = true
+	Vue.config.devtools = true
+
 	var app = new Vue({
 		el: '#wrapper',
 		data: appVars

@@ -8,7 +8,11 @@ const BrowserWindow = electron.BrowserWindow
 
 app.on('ready', _ => { 
 
-    console.log('Ready!');
+    console.log(`Ready in ${process.env.NODE_ENV} mode`);
+
+    if (process.env.NODE_ENV === 'development') {    
+        BrowserWindow.addDevToolsExtension(`${__dirname}/ChromeExtensions/nhdogjmejiglipccpnnnanhbledajbpd/2.3.1_0`);
+    }
 
     var win = new BrowserWindow({
         width: 1000,
@@ -17,7 +21,6 @@ app.on('ready', _ => {
         frame: true,
         transparent:false
     })
-    /*win.setMenu(null)*/
 
     win.on('close', function () {
         console.log('Closed!');
