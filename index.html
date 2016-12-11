@@ -38,6 +38,12 @@
                     <legend>Options</legend>
                     
                     Hallo {{ myName }} <br>
+
+                    <input @keyup.enter="addName" v-model="newName" type="text">
+
+                    <ul>
+                        <li v-for="item in testArray">{{item}}</li>
+                    </ul>
                     
                     <input v-model="droppedFile.range.bytesFrom" type="text"> -
                     <input v-model="droppedFile.range.bytesTil" type="text">
@@ -48,7 +54,7 @@
                         <option>end</option>
                     </select>
 
-                    <button id="reloadButton">Reload</button><p></p>
+                    <button @click="reloadFile">Reload</button><p></p>
 
                     <label>File name  :</label>
                     <span>{{droppedFile.name}}</span><br>

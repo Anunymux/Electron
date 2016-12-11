@@ -6,7 +6,9 @@ import fs = require('fs')
 import * as fsa from 'async-file'
 
 var appVars = {
+	testArray:['blub', 'bla', 'bam'],
 	myName:'Johannes',
+	newName:'',
 	droppedFile:{
 		name:'nothing dropped yet',
 		length:0,
@@ -20,23 +22,24 @@ var appVars = {
 	selected:"first"
 }
 
-if (typeof jQuery == "undefined") {
-	alert("jQuery is not installed")
-}else{
-	console.log('jQuery is installed')
-}
-
-$( document ).ready( () => {
-	console.log("ready!")
-
-	Vue.config.debug = true
-	Vue.config.devtools = true
-
-	var app = new Vue({
-		el: '#wrapper',
-		data: appVars
-	})
+document.addEventListener("DOMContentLoaded", () => {
 	
+	console.log("ready!")
+	
+	new Vue({
+		el: '#wrapper',
+		data: appVars,
+		methods:{
+			addName(){
+				appVars.testArray.push(appVars.newName)
+				appVars.newName=''
+			},
+			reloadFile(){
+				PopulateContentFromFile(appVars.droppedFile.path)
+			}
+		}
+	})
+
 	document.ondragover = document.ondrop = (ev) => {
 		ev.preventDefault()
 	}
@@ -45,10 +48,6 @@ $( document ).ready( () => {
 		ReadFileOffsetFromDrop(ev)
 	}
 
-	$('#reloadButton').on('click', () => {
-		PopulateContentFromFile(appVars.droppedFile.path)
-	})
-
 	$('#selected').on('change', () => {
 		PopulateRangeInputs()
 	})
@@ -56,7 +55,14 @@ $( document ).ready( () => {
 	$('#selected').on('click', () => {
 		CheckForValidInput()
 	})
+
 })
+
+if (typeof jQuery == "undefined") {
+	alert("jQuery is not installed")
+}else{
+	console.log('jQuery is installed')
+}
 
 function CheckForValidInput(){
 	if(appVars.droppedFile.length == 0){

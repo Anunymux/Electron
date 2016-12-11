@@ -3,7 +3,9 @@ console.log('in renderer');
 const toastr = require('toastr');
 const fs = require("fs");
 var appVars = {
+    testArray: ['blub', 'bla', 'bam'],
     myName: 'Johannes',
+    newName: '',
     droppedFile: {
         name: 'nothing dropped yet',
         length: 0,
@@ -16,19 +18,20 @@ var appVars = {
     },
     selected: "first"
 };
-if (typeof jQuery == "undefined") {
-    alert("jQuery is not installed");
-}
-else {
-    console.log('jQuery is installed');
-}
-$(document).ready(() => {
+document.addEventListener("DOMContentLoaded", () => {
     console.log("ready!");
-    Vue.config.debug = true;
-    Vue.config.devtools = true;
-    var app = new Vue({
+    new Vue({
         el: '#wrapper',
-        data: appVars
+        data: appVars,
+        methods: {
+            addName() {
+                appVars.testArray.push(appVars.newName);
+                appVars.newName = '';
+            },
+            reloadFile() {
+                PopulateContentFromFile(appVars.droppedFile.path);
+            }
+        }
     });
     document.ondragover = document.ondrop = (ev) => {
         ev.preventDefault();
@@ -36,9 +39,6 @@ $(document).ready(() => {
     document.body.ondrop = (ev) => {
         ReadFileOffsetFromDrop(ev);
     };
-    $('#reloadButton').on('click', () => {
-        PopulateContentFromFile(appVars.droppedFile.path);
-    });
     $('#selected').on('change', () => {
         PopulateRangeInputs();
     });
@@ -46,6 +46,12 @@ $(document).ready(() => {
         CheckForValidInput();
     });
 });
+if (typeof jQuery == "undefined") {
+    alert("jQuery is not installed");
+}
+else {
+    console.log('jQuery is installed');
+}
 function CheckForValidInput() {
     if (appVars.droppedFile.length == 0) {
         alert('Please drop a file first and then click refresh.');
