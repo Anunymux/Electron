@@ -39,39 +39,35 @@
                     
                     Hallo {{ myName }} <br>
                     
-                    <input v-model="bytesFrom" type="text"> -
-                    <input v-model="bytesTil" type="text">
+                    <input v-model="droppedFile.range.bytesFrom" type="text"> -
+                    <input v-model="droppedFile.range.bytesTil" type="text">
                     
-                    <select name="byteRange" id="selByteRange">
-                        <option value="first" selected>First part</option>
-                        <option value="middle">Middle part</option>
-                        <option value="end">End part</option>
+                    <select v-model="selected" id="selected">
+                        <option>first</option>
+                        <option>middle</option>
+                        <option>end</option>
                     </select>
 
                     <button id="reloadButton">Reload</button><p></p>
 
-                    <label for="infoFileName">File name  :</label>
+                    <label>File name  :</label>
                     <span>{{droppedFile.name}}</span><br>
 
-                    <label for="infoFilePath">File path...:</label>
+                    <label>File path...:</label>
                     <span>{{droppedFile.path}}</span><br>
 
-                    <label for="infoFileLength">File length:</label>
+                    <label>File length:</label>
                     <span>{{droppedFile.length}}</span><br>
                 </fieldset>        
 
             </div>
 
             <p></p>
-
-            <div id="bottom">
-                <fieldset id="lowerFieldSet">
-                    <legend>Drop files hereeee</legend>
-                    <textarea id="droppedContent"  id="bottom"></textarea>
-                </fieldset>
-
-            </div>
-
+            
+            <fieldset id="lowerFieldSet">
+                <legend>Drop files hereeee</legend>
+                <textarea v-model="droppedFile.content" placeholder="Drop your desired file here..."></textarea>
+            </fieldset>
 
     </body>
 </html>

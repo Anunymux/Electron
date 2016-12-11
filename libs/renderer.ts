@@ -6,14 +6,18 @@ import fs = require('fs')
 import * as fsa from 'async-file'
 
 var appVars = {
-	bytesFrom:0,
-	bytesTil:10000,
 	myName:'Johannes',
 	droppedFile:{
 		name:'nothing dropped yet',
 		length:0,
-		path:'nothing dropped yet'
-	}
+		path:'nothing dropped yet',
+		range:{
+			bytesFrom:0,
+			bytesTil:10000
+		},
+		content:''
+	},
+	selected:"first"
 }
 
 if (typeof jQuery == "undefined") {
@@ -39,92 +43,90 @@ $( document ).ready( () => {
 	}
 
 	$('#reloadButton').on('click', () => {
-		PopulateContentFromFile($('#infoFilePath').text())
+		PopulateContentFromFile(appVars.droppedFile.path)
 	})
 
-	$('#selByteRange').on('change', () => {
-		
+	$('#selected').on('change', () => {
 		PopulateRangeInputs()
+	})
+
+	$('#selected').on('click', () => {
+		CheckForValidInput()
 	})
 })
 
-function PopulateRangeInputs(){
-	
-	var selElement:string = $('#selByteRange').val()
-	
-	if ($('#infoFileLength').text() == '') {
+function CheckForValidInput(){
+	if(appVars.droppedFile.length == 0){
 		alert('Please drop a file first and then click refresh.')
+		appVars.selected == 'first'
 		return
 	}
+}
 
-	var length:number = parseInt($('#infoFileLength').text())
-	var fromRange:number = 0
-	var tilRange:number = 0
+function ClearFields(){
+	appVars.droppedFile.range.bytesFrom = 0
+	appVars.droppedFile.range.bytesTil = 10000
+	appVars.selected = 'first'
+	appVars.droppedFile.content = ''
+}
 
-	console.log(selElement)
-	console.log(length)
+function PopulateRangeInputs(){
 
-	if (selElement == 'first') {	
-		fromRange=0
-		tilRange=10000
+	if (appVars.selected == 'first') {	
+		appVars.droppedFile.range.bytesFrom=0
+		appVars.droppedFile.range.bytesTil=10000
 	}
 
-	if (selElement == 'middle') {	
+	if (appVars.selected == 'middle') {	
 
-		fromRange=Math.round(length / 2)
-		tilRange=fromRange + 10000
+		appVars.droppedFile.range.bytesFrom=Math.round(appVars.droppedFile.length / 2)
+		appVars.droppedFile.range.bytesTil=appVars.droppedFile.range.bytesFrom + 10000
 	}
 
-	if (selElement == 'end') {	
-		fromRange=length - 10000
-		tilRange=length
+	if (appVars.selected == 'end') {	
+		appVars.droppedFile.range.bytesFrom=appVars.droppedFile.length - 10000
+		appVars.droppedFile.range.bytesTil=appVars.droppedFile.length
 	}
-
-	$('#bytesFrom').val(fromRange)
-	$('#bytesTil').val(tilRange)
-
 }
 
 function ReadFileOffsetFromDrop(ev:DragEvent){
 	toastr.clear()
+
+	ClearFields()
+
 	var file:File = ev.dataTransfer.files[0]
 
 	appVars.droppedFile.name = file.name
 	appVars.droppedFile.length = file.size
 	appVars.droppedFile.path = file.path
 
-	/*PopulateContentFromFile(file.path)*/
+	PopulateContentFromFile(file.path)
 }
 
 function PopulateContentFromFile(filePath:string){
 	
-	var bytesFrom:string = $('#bytesFrom').val()
-	var bytesTil:string = $('#bytesTil').val()
 	var regOnlyNumbers:RegExp = /^[0-9]+$/g;
 
-	if (!!bytesFrom.match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
-		alert(`Please only use numbers, ${appVars.myName}. ${bytesFrom} is not valid. Thank you.`)
+	if (!!appVars.droppedFile.range.bytesFrom.toString().match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
+		alert(`Please only use numbers, ${appVars.myName}. ${appVars.droppedFile.range.bytesFrom} is not valid. Thank you.`)
 		return
 	}
 
-	if (!!bytesTil.match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
-		alert(`Please only use numbers, ${appVars.myName}. ${bytesTil} is not valid. Thank you.`)
+	if (!!appVars.droppedFile.range.bytesTil.toString().match(regOnlyNumbers) == false) { //Wenn Input nicht nur Zahlen ist...
+		alert(`Please only use numbers, ${appVars.myName}. ${appVars.droppedFile.range.bytesTil} is not valid. Thank you.`)
 		return
 	}
 
-	var start = parseInt(bytesFrom)
-	var end = parseInt(bytesTil)
-
-	console.log(`${start} - ${end}`)
+	console.log(`${appVars.droppedFile.range.bytesFrom} - ${appVars.droppedFile.range.bytesTil}`)
 
 	//Test if range is too high and if it even makes sense to read content
 
-	if (end - start > 100000) {
+	if (appVars.droppedFile.range.bytesTil - appVars.droppedFile.range.bytesFrom > 100000) {
 		alert('The selected range is too high and would take too long to process.')
 		return
 	}
 
-	var filePartOfContent:fs.ReadStream = fs.createReadStream(filePath, {start: start, end: end})
+	var filePartOfContent:fs.ReadStream = fs.createReadStream(filePath, {start: appVars.droppedFile.range.bytesFrom, end: appVars.droppedFile.range.bytesTil})
 	var data:string = ''
 
 	filePartOfContent.on('data', (chunk) => {
@@ -132,7 +134,8 @@ function PopulateContentFromFile(filePath:string){
 	})
 	
 	filePartOfContent.on('end', () => {
-		$('#droppedContent').text(data)
+
+		appVars.droppedFile.content = data
 		$("#reloadButton").notify('Done', {
 			elementPosition:"right",
 			className:"success",

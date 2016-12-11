@@ -3,14 +3,18 @@ console.log('in renderer');
 const toastr = require('toastr');
 const fs = require("fs");
 var appVars = {
-    bytesFrom: 0,
-    bytesTil: 10000,
     myName: 'Johannes',
     droppedFile: {
         name: 'nothing dropped yet',
         length: 0,
-        path: 'nothing dropped yet'
-    }
+        path: 'nothing dropped yet',
+        range: {
+            bytesFrom: 0,
+            bytesTil: 10000
+        },
+        content: ''
+    },
+    selected: "first"
 };
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
@@ -31,73 +35,74 @@ $(document).ready(() => {
         ReadFileOffsetFromDrop(ev);
     };
     $('#reloadButton').on('click', () => {
-        PopulateContentFromFile($('#infoFilePath').text());
+        PopulateContentFromFile(appVars.droppedFile.path);
     });
-    $('#selByteRange').on('change', () => {
+    $('#selected').on('change', () => {
         PopulateRangeInputs();
     });
+    $('#selected').on('click', () => {
+        CheckForValidInput();
+    });
 });
-function PopulateRangeInputs() {
-    var selElement = $('#selByteRange').val();
-    if ($('#infoFileLength').text() == '') {
+function CheckForValidInput() {
+    if (appVars.droppedFile.length == 0) {
         alert('Please drop a file first and then click refresh.');
+        appVars.selected == 'first';
         return;
     }
-    var length = parseInt($('#infoFileLength').text());
-    var fromRange = 0;
-    var tilRange = 0;
-    console.log(selElement);
-    console.log(length);
-    if (selElement == 'first') {
-        fromRange = 0;
-        tilRange = 10000;
+}
+function ClearFields() {
+    appVars.droppedFile.range.bytesFrom = 0;
+    appVars.droppedFile.range.bytesTil = 10000;
+    appVars.selected = 'first';
+    appVars.droppedFile.content = '';
+}
+function PopulateRangeInputs() {
+    if (appVars.selected == 'first') {
+        appVars.droppedFile.range.bytesFrom = 0;
+        appVars.droppedFile.range.bytesTil = 10000;
     }
-    if (selElement == 'middle') {
-        fromRange = Math.round(length / 2);
-        tilRange = fromRange + 10000;
+    if (appVars.selected == 'middle') {
+        appVars.droppedFile.range.bytesFrom = Math.round(appVars.droppedFile.length / 2);
+        appVars.droppedFile.range.bytesTil = appVars.droppedFile.range.bytesFrom + 10000;
     }
-    if (selElement == 'end') {
-        fromRange = length - 10000;
-        tilRange = length;
+    if (appVars.selected == 'end') {
+        appVars.droppedFile.range.bytesFrom = appVars.droppedFile.length - 10000;
+        appVars.droppedFile.range.bytesTil = appVars.droppedFile.length;
     }
-    $('#bytesFrom').val(fromRange);
-    $('#bytesTil').val(tilRange);
 }
 function ReadFileOffsetFromDrop(ev) {
     toastr.clear();
+    ClearFields();
     var file = ev.dataTransfer.files[0];
     appVars.droppedFile.name = file.name;
     appVars.droppedFile.length = file.size;
     appVars.droppedFile.path = file.path;
-    /*PopulateContentFromFile(file.path)*/
+    PopulateContentFromFile(file.path);
 }
 function PopulateContentFromFile(filePath) {
-    var bytesFrom = $('#bytesFrom').val();
-    var bytesTil = $('#bytesTil').val();
     var regOnlyNumbers = /^[0-9]+$/g;
-    if (!!bytesFrom.match(regOnlyNumbers) == false) {
-        alert(`Please only use numbers, ${appVars.myName}. ${bytesFrom} is not valid. Thank you.`);
+    if (!!appVars.droppedFile.range.bytesFrom.toString().match(regOnlyNumbers) == false) {
+        alert(`Please only use numbers, ${appVars.myName}. ${appVars.droppedFile.range.bytesFrom} is not valid. Thank you.`);
         return;
     }
-    if (!!bytesTil.match(regOnlyNumbers) == false) {
-        alert(`Please only use numbers, ${appVars.myName}. ${bytesTil} is not valid. Thank you.`);
+    if (!!appVars.droppedFile.range.bytesTil.toString().match(regOnlyNumbers) == false) {
+        alert(`Please only use numbers, ${appVars.myName}. ${appVars.droppedFile.range.bytesTil} is not valid. Thank you.`);
         return;
     }
-    var start = parseInt(bytesFrom);
-    var end = parseInt(bytesTil);
-    console.log(`${start} - ${end}`);
+    console.log(`${appVars.droppedFile.range.bytesFrom} - ${appVars.droppedFile.range.bytesTil}`);
     //Test if range is too high and if it even makes sense to read content
-    if (end - start > 100000) {
+    if (appVars.droppedFile.range.bytesTil - appVars.droppedFile.range.bytesFrom > 100000) {
         alert('The selected range is too high and would take too long to process.');
         return;
     }
-    var filePartOfContent = fs.createReadStream(filePath, { start: start, end: end });
+    var filePartOfContent = fs.createReadStream(filePath, { start: appVars.droppedFile.range.bytesFrom, end: appVars.droppedFile.range.bytesTil });
     var data = '';
     filePartOfContent.on('data', (chunk) => {
         data += chunk;
     });
     filePartOfContent.on('end', () => {
-        $('#droppedContent').text(data);
+        appVars.droppedFile.content = data;
         $("#reloadButton").notify('Done', {
             elementPosition: "right",
             className: "success",
