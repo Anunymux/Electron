@@ -4,6 +4,7 @@ const toastr = require('toastr');
 const fs = require("fs");
 var appVars = {
     testArray: ['blub', 'bla', 'bam'],
+    testArraySize: 0,
     myName: 'Johannes',
     newName: '',
     droppedFile: {
@@ -27,11 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
             addName() {
                 appVars.testArray.push(appVars.newName);
                 appVars.newName = '';
+                appVars.testArraySize = appVars.testArray.length;
             },
             reloadFile() {
                 PopulateContentFromFile(appVars.droppedFile.path);
             }
-        }
+        },
+        computed: {}
     });
     document.ondragover = document.ondrop = (ev) => {
         ev.preventDefault();

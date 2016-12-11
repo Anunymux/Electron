@@ -38,8 +38,8 @@
                     <legend>Options</legend>
                     
                     Hallo {{ myName }} <br>
-
-                    <input @keyup.enter="addName" v-model="newName" type="text">
+                    
+                    <input @keyup.enter="addName" v-model="newName" type="text" :title="testArraySize">
 
                     <ul>
                         <li v-for="item in testArray">{{item}}</li>
