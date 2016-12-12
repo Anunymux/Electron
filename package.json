@@ -13,6 +13,7 @@
     "@types/electron-window-state": "^2.0.28",
     "@types/jquery": "^2.0.34",
     "@types/line-reader": "0.0.28",
+    "@types/lodash": "^4.14.43",
     "@types/notify": "0.0.28",
     "@types/underscore": "^1.7.35",
     "@types/vue": "^1.0.31",
@@ -20,6 +21,7 @@
     "electron-debug": "^1.1.0",
     "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",
+    "lodash": "^4.17.2",
     "toastr": "^2.1.2"
   },
   "devDependencies": {

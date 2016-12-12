@@ -1,4 +1,5 @@
 const electron = require('electron')
+const appEnv = 'development'
 
 require('electron-reload')(__dirname);
 require('electron-debug')({ showDevTools: false });
@@ -8,9 +9,9 @@ const BrowserWindow = electron.BrowserWindow
 
 app.on('ready', _ => { 
 
-    console.log(`Ready in ${process.env.NODE_ENV} mode`);
+    console.log(`Ready`);
 
-    if (process.env.NODE_ENV === 'development') {    
+    if (appEnv === 'development') {    
         BrowserWindow.addDevToolsExtension(`${__dirname}/ChromeExtensions/nhdogjmejiglipccpnnnanhbledajbpd/2.3.1_0`);
     }
 
@@ -37,7 +38,8 @@ app.on('ready', _ => {
         alert(`Event: ${event}`)
     })
 
-    win.loadURL(`${__dirname}/index.html`)  
+    /*win.loadURL(`${__dirname}/index.html`)*/
+    win.loadURL(`${__dirname}/pwGenerator.html`)  
 })
 
 function PresentErrorNicely(err){

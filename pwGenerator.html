@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Generate Passwords</title>
+
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./node_modules/toastr/build/toastr.min.css">
+
+        <!-- muss vor Scripts stehen -->
+        <script>
+            if (typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }
+        </script>
+
+        <script src="./libs/vue.js"></script>
+        <script src="./libs/jquery-3.1.1.min.js"></script>
+        <script src="./libs/notify.min.js"></script>
+
+        <script src="./pwGenerator.js"></script>
+
+        <!-- muss nach Scripts stehen -->
+        <script>
+            if (window.module) module = window.module;
+        </script>
+
+    </head>
+
+    <body>
+
+
+        <div id="wrapper">
+
+            <div id="top">
+                <h1>Generate Passwords</h1>
+
+                <fieldset>
+                    <legend>Options</legend>
+                               
+                    <input type="checkbox" id="checkbox" v-model="pw.mixedCase">
+                    mixedCase
+                    <label for="checkbox">{{ pw.mixedCase }}</label><br>
+
+                    <input type="checkbox" id="checkbox" v-model="pw.numeric">
+                    numeric
+                    <label for="checkbox">{{ pw.numeric }}</label><br>
+
+                    <input type="checkbox" id="checkbox" v-model="pw.symbolic">
+                    symbolic
+                    <label for="checkbox">{{ pw.symbolic }}</label><p></p>
+
+                    <input type="number" min="6" max="100" placeholder="password length" v-model="pw.length">
+
+                    <input id="skill" type="range" min="6" max="100" v-model="pw.length"> <p></p>
+
+                    <p></p>
+
+                    <select v-model="pw.selectedSymbols" multiple style='height: 200px;'>
+                        <option v-for="item in pw.allowedSymbols">{{item}}</option>
+                    </select>
+                    <p></p>
+                    <span>Selected: {{ pw.selectedSymbols }}</span> <p></p>           
+
+                    <button @click="GeneratePW">Generate PW</button>
+
+                </fieldset>        
+
+            </div>
+
+        </div>
+    </body>
+</html>
