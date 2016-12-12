@@ -36,6 +36,9 @@
 
                 <fieldset>
                     <legend>Options</legend>
+
+                    <input type="checkbox" id="checkbox" checked readonly disabled>
+                    lowerCase always true<br>        
                                
                     <input type="checkbox" id="checkbox" v-model="pw.mixedCase">
                     mixedCase
@@ -47,19 +50,16 @@
 
                     <input type="checkbox" id="checkbox" v-model="pw.symbolic">
                     symbolic
-                    <label for="checkbox">{{ pw.symbolic }}</label><p></p>
+                    <label for="checkbox">{{ pw.symbolic }}</label><br>
 
-                    <input type="number" min="6" max="100" placeholder="password length" v-model="pw.length">
+                    <label for="length">length: {{pw.length}}</label>
+                    <input id="length" type="range" min="8" max="100" v-model="pw.length"> <p></p>
 
-                    <input id="skill" type="range" min="6" max="100" v-model="pw.length"> <p></p>
-
-                    <p></p>
-
-                    <select v-model="pw.selectedSymbols" multiple style='height: 200px;'>
+                    <select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
                         <option v-for="item in pw.allowedSymbols">{{item}}</option>
                     </select>
                     <p></p>
-                    <span>Selected: {{ pw.selectedSymbols }}</span> <p></p>           
+                    <span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols }}</span> <p></p>           
 
                     <button @click="GeneratePW">Generate PW</button>
 

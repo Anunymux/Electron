@@ -1,6 +1,9 @@
 "use strict";
 console.log('in renderer');
 const toastr = require('toastr');
+const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
+const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numberChars = '0123456789';
 const _ = require("lodash");
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
@@ -12,7 +15,7 @@ var appVars = {
     pw: {
         length: 8,
         numeric: true,
-        symbolic: true,
+        symbolic: false,
         mixedCase: true,
         allowedSymbols: ['!', '$', '%', '&', '/', '(', ')', '=', '?', '{', '[', ']', '}', '+', '*', '#', '-', '_', '.', ':', ',', ';', '<', '>'],
         selectedSymbols: ['!', '$', '%', '&', '/', '(', ')', '=', '?', '{', '[', ']', '}', '+', '*', '#', '-', '_', '.', ':', ',', ';', '<', '>']
@@ -26,22 +29,30 @@ document.addEventListener("DOMContentLoaded", () => {
         methods: {
             GeneratePW() {
                 var pw = [];
-                var pwString;
-                pw.push(ReturnRnd('abcdefghijklmnopqrstuvwxyz', 2));
+                var pwReqString;
+                var allowedMissingChars = lowerCaseChars;
+                //first make sure that all required chars are used 
+                pw.push(ReturnRnd(lowerCaseChars, 2));
                 if (appVars.pw.mixedCase) {
-                    pw.push(ReturnRnd('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 2));
+                    pw.push(ReturnRnd(upperCaseChars, 2));
+                    allowedMissingChars += upperCaseChars;
                 }
                 if (appVars.pw.numeric) {
-                    pw.push(ReturnRnd('0123456789', 2));
+                    pw.push(ReturnRnd(numberChars, 2));
+                    allowedMissingChars += numberChars;
                 }
                 if (appVars.pw.symbolic) {
                     pw.push(ReturnRnd(appVars.pw.selectedSymbols.join(""), 2));
+                    allowedMissingChars += appVars.pw.selectedSymbols.join("");
                 }
                 pw = _.shuffle(pw);
-                pwString = pw.join("");
-                /*console.log(pwString)*/
-                pwString = ShuffleStr(pwString);
-                console.log(pwString);
+                pwReqString = pw.join("");
+                //add missing chars
+                var missingChars = appVars.pw.length - pwReqString.length;
+                pwReqString += ReturnRnd(allowedMissingChars, missingChars);
+                pwReqString = ShuffleStr(pwReqString);
+                /*console.log(`allowed additional chars: ${allowedMissingChars}`)*/
+                console.log(pwReqString);
             }
         },
         computed: {}
