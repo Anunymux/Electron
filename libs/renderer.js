@@ -17,7 +17,7 @@ var appVars = {
         },
         content: ''
     },
-    selected: "first"
+    selected: "first 10k"
 };
 document.addEventListener("DOMContentLoaded", () => {
     console.log("ready!");
@@ -42,9 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.ondrop = (ev) => {
         ReadFileOffsetFromDrop(ev);
     };
+    //Todo change to vue
     $('#selected').on('change', () => {
         PopulateRangeInputs();
     });
+    //Todo change to vue
     $('#selected').on('click', () => {
         CheckForValidInput();
     });
@@ -65,20 +67,39 @@ function CheckForValidInput() {
 function ClearFields() {
     appVars.droppedFile.range.bytesFrom = 0;
     appVars.droppedFile.range.bytesTil = 10000;
-    appVars.selected = 'first';
+    appVars.selected = 'first 10k';
     appVars.droppedFile.content = '';
 }
 function PopulateRangeInputs() {
-    if (appVars.selected == 'first') {
+    var minRange = 0;
+    if (appVars.droppedFile.length > 10000) {
+        minRange = 10000;
+    }
+    else if (appVars.droppedFile.length > 1000) {
+        minRange = 1000;
+    }
+    else if (appVars.droppedFile.length > 100) {
+        minRange = 100;
+    }
+    else if (appVars.droppedFile.length > 10) {
+        minRange = 10;
+    }
+    else if (appVars.droppedFile.length > 1) {
+        minRange = 1;
+    }
+    else {
+        minRange = 0;
+    }
+    if (appVars.selected == 'first 10k') {
         appVars.droppedFile.range.bytesFrom = 0;
         appVars.droppedFile.range.bytesTil = 10000;
     }
     if (appVars.selected == 'middle') {
-        appVars.droppedFile.range.bytesFrom = Math.round(appVars.droppedFile.length / 2);
-        appVars.droppedFile.range.bytesTil = appVars.droppedFile.range.bytesFrom + 10000;
+        appVars.droppedFile.range.bytesFrom = Math.round(appVars.droppedFile.length / 2) - minRange;
+        appVars.droppedFile.range.bytesTil = Math.round(appVars.droppedFile.length / 2);
     }
     if (appVars.selected == 'end') {
-        appVars.droppedFile.range.bytesFrom = appVars.droppedFile.length - 10000;
+        appVars.droppedFile.range.bytesFrom = appVars.droppedFile.length - minRange;
         appVars.droppedFile.range.bytesTil = appVars.droppedFile.length;
     }
 }
