@@ -21,7 +21,7 @@ var appVars = {
         length:8,
         numeric:true,
         symbolic:false,
-        mixedCase:true,
+        upperCase:true,
 		allowedSymbols:['!', '$' , '%', '&', '/', '(', ')', '=', '?', '{', '[', ']', '}', '+', '*', '#', '-', '_', '.', ':', ',', ';', '<', '>'],
 		selectedSymbols:['!', '$' , '%', '&', '/', '(', ')', '=', '?', '{', '[', ']', '}', '+', '*', '#', '-', '_', '.', ':', ',', ';', '<', '>']
     }
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 				pw.push(ReturnRnd(lowerCaseChars, 2))
 
-				if (appVars.pw.mixedCase) {
+				if (appVars.pw.upperCase) {
 					pw.push(ReturnRnd(upperCaseChars, 2))
 					allowedMissingChars+=upperCaseChars
 				}

@@ -62,6 +62,31 @@
                     
                 </div>
                 <div class="col-md-9">
+
+            <div id="top">
+                <h1>Generate Passwords</h1>
+
+                <fieldset>
+                    <legend>Options</legend>
+
+                    <input type="checkbox" id="checkbox" checked readonly disabled>
+                    lowerCase always true<br>        
+                               
+                    <input type="checkbox" id="checkbox" v-model="pw.upperCase">
+                    upperCase
+                    <label for="checkbox">{{ pw.upperCase }}</label><br>
+
+                    <input type="checkbox" id="checkbox" v-model="pw.numeric">
+                    numeric
+                    <label for="checkbox">{{ pw.numeric }}</label><br>
+
+                    <input type="checkbox" id="checkbox" v-model="pw.symbolic">
+                    symbolic
+                    <label for="checkbox">{{ pw.symbolic }}</label><br>
+
+                    <label for="length">length: {{pw.length}}</label>
+                    <input id="length" type="range" min="8" max="100" v-model="pw.length"> <p></p>
+
                     <select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
                         <option v-for="item in pw.allowedSymbols">{{item}}</option>
                     </select>
