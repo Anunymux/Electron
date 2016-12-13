@@ -1,9 +1,14 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>Generate Passwords</title>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <link rel="stylesheet" href="./css/style.css">
         <link rel="stylesheet" href="./node_modules/toastr/build/toastr.min.css">
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
 
         <!-- muss vor Scripts stehen -->
         <script>
@@ -13,8 +18,9 @@
             }
         </script>
 
+        <script src="./libs/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="./libs/vue.js"></script>
-        <script src="./libs/jquery-3.1.1.min.js"></script>
         <script src="./libs/notify.min.js"></script>
 
         <script src="./pwGenerator.js"></script>
@@ -28,45 +34,55 @@
 
     <body>
 
-
         <div id="wrapper">
 
-            <div id="top">
-                <h1>Generate Passwords</h1>
-
-                <fieldset>
-                    <legend>Options</legend>
-
-                    <input type="checkbox" id="checkbox" checked readonly disabled>
-                    lowerCase always true<br>        
-                               
-                    <input type="checkbox" id="checkbox" v-model="pw.mixedCase">
-                    mixedCase
-                    <label for="checkbox">{{ pw.mixedCase }}</label><br>
-
-                    <input type="checkbox" id="checkbox" v-model="pw.numeric">
-                    numeric
-                    <label for="checkbox">{{ pw.numeric }}</label><br>
-
-                    <input type="checkbox" id="checkbox" v-model="pw.symbolic">
-                    symbolic
-                    <label for="checkbox">{{ pw.symbolic }}</label><br>
-
-                    <label for="length">length: {{pw.length}}</label>
-                    <input id="length" type="range" min="8" max="100" v-model="pw.length"> <p></p>
-
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center">
+                        Generate Passwords
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    
+                    <div class="checkbox disabled">
+                        <label><input type="checkbox" checked disabled>lowerCase <b>always true</b></label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" v-model="pw.mixedCase">mixedCase</label> <b>{{ pw.mixedCase }}</b> 
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" v-model="pw.numeric">numeric</label> <b>{{ pw.numeric }}</b> 
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" v-model="pw.symbolic">symbolic</label> <b>{{ pw.symbolic }}</b> 
+                    </div>
+                    
+                </div>
+                <div class="col-md-9">
                     <select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
                         <option v-for="item in pw.allowedSymbols">{{item}}</option>
                     </select>
                     <p></p>
-                    <span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols }}</span> <p></p>           
-
-                    <button @click="GeneratePW">Generate PW</button>
-
-                </fieldset>        
-
+                </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols }}</span>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button @click="GeneratePW" type="button" class="btn btn-primary btn-block">
+                        Generate PW
+                    </button>
+                </div>
+            </div>
         </div>
     </body>
 </html>
