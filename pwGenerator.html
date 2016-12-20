@@ -27,55 +27,61 @@
 	</head>
 	<body>
 		<div id="wrapper">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<h3 class="text-center">
-						Generate Passwords
-					</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="checkbox disabled">
-						<label><input type="checkbox" checked disabled>lowerCase <b>always true</b></label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" v-model="pw.upperCase">upperCase</label> <b>{{ pw.upperCase }}</b>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" v-model="pw.numeric">numeric</label> <b>{{ pw.numeric }}</b>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" v-model="pw.symbolic">symbolic</label> <b>{{ pw.symbolic }}</b>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
-						<option v-for="item in pw.allowedSymbols">{{item}}</option>
-					</select>
-					<p></p>
-				</div>
-				<div class="col-md-7">
-					<span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols }}</span>
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<label for="length">length: {{pw.length}}</label>
-					<input id="length" type="range" min="8" max="100" v-model="pw.length">
-					<p></p>
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<button @click="GeneratePW" type="button" class="btn btn-primary btn-block">
-					Generate PW
-					</button>
-				</div>
-			</div>
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center">
+                            Generate Passwords
+                        </h3>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="checkbox disabled">
+                            <label><input type="checkbox" checked disabled>lowerCase <b>always true</b></label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" v-model="pw.upperCase">upperCase</label> <b>{{ pw.upperCase }}</b>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" v-model="pw.numeric">numeric</label> <b>{{ pw.numeric }}</b>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" v-model="pw.symbolic">symbolic</label> <b>{{ pw.symbolic }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
+                            <option v-for="item in pw.allowedSymbols">{{item}}</option>
+                        </select>
+                        <p></p>
+                    </div>
+                    <div class="col-md-7">
+                        <span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols }}</span>
+                        <p></p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="length">length: {{pw.length}}</label>
+                        <input id="length" type="range" min="8" max="100" v-model="pw.length">
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button @click="GeneratePW" type="button" class="btn btn-primary btn-block">
+                        Generate PW
+                        </button>
+                    </div>
+                </div>
+
+            </div>
 		</div>
 	</body>
 </html>
