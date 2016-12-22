@@ -53,7 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 pwReqString = ShuffleStr(pwReqString);
                 /*console.log(`allowed additional chars: ${allowedMissingChars}`)*/
                 console.log(pwReqString);
-            }
+            },
+            OnSymbolChange() {
+                if (appVars.pw.selectedSymbols.length == 0) {
+                    appVars.pw.symbolic = false;
+                    appVars.pw.selectedSymbols = appVars.pw.allowedSymbols;
+                }
+            },
         },
         computed: {}
     });
