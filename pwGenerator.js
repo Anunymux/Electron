@@ -53,13 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 pwReqString = ShuffleStr(pwReqString);
                 /*console.log(`allowed additional chars: ${allowedMissingChars}`)*/
                 console.log(pwReqString);
-            },
-            OnSymbolChange() {
-                if (appVars.pw.selectedSymbols.length == 0) {
-                    appVars.pw.symbolic = false;
-                    appVars.pw.selectedSymbols = appVars.pw.allowedSymbols;
-                }
-            },
+            }
         },
         computed: {}
     });
@@ -98,7 +92,7 @@ function PresentErrorNicely(err) {
         "tapToDismiss": false,
         "progressBar": false
     };
-    toastr["error"](err.message, `An error has ocured.`);
+    toastr["error"](err.message, `An error has occured.`);
 }
 process.on('uncaughtException', function (err) {
     PresentErrorNicely(err);
