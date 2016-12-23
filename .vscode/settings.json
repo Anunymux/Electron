@@ -5,7 +5,7 @@
     // Steuert die Verzögerung in ms für die Anzeige der Schnellvorschläge.
     "editor.quickSuggestionsDelay": 0,
     // Steuert den Schriftgrad.
-    "editor.fontSize": 18,
+    "editor.fontSize": 14,
 
     "editor.mouseWheelZoom": true,
     "files.autoSave": "onFocusChange",

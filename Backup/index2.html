@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Mein Titel</title>
+
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./node_modules/toastr/build/toastr.min.css">
+        <link rel="stylesheet" href="./css/photon.min.css">
+
+        <!-- muss vor Scripts stehen -->
+        <script>
+            if (typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }
+        </script>
+
+        <script src="./libs/jquery-3.1.1.min.js"></script>
+        <script src="./libs/notify.min.js"></script>
+
+        <script src="./libs/renderer.js"></script>
+
+        <!-- muss nach Scripts stehen -->
+        <script>
+            if (window.module) module = window.module;
+        </script>
+
+    </head>
+
+    <body>
+
+
+        <header class="toolbar toolbar-header">
+            <h1 class="title">Header of the tabs</h1>
+        </header>
+
+        <div class="tab-group">
+            <div class="tab-item">
+                Tab1
+            </div>
+            <div class="tab-item active">
+                Tab item active
+            </div>
+            <div class="tab-item">
+                Tab2
+            </div>
+        </div>
+
+
+    </body>
+</html>
