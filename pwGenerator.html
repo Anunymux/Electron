@@ -29,7 +29,7 @@
 		<div id="wrapper">
             <div class="container-fluid">
 
-                <div class="row">
+                <div class="row"> <!--Header-->
                     <div class="col-md-12">
                         <h3 class="text-center">
                             Generate Passwords
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 
-                <div class="row">
+                <div class="row"> <!--Options-->
                     <div class="col-md-3">
                         <div class="checkbox disabled">
                             <label><input type="checkbox" checked disabled>lowerCase <b>always true</b></label>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 
-                <div class="row">
+                <div class="row"> <!--Length-->
                     <div class="col-md-12">
                         <label for="length">length: {{pw.length}}</label>
                         <input id="length" type="range" min="8" max="100" v-model="pw.length">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row"> <!--Generate-->
                     <div class="col-md-12">
                         <button @click="GeneratePW" type="button" class="btn btn-primary btn-block">
                         Generate PW

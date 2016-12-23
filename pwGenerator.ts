@@ -120,7 +120,7 @@ function PresentErrorNicely(err:NodeJS.ErrnoException){
 		"progressBar":false
 	}
 
-	toastr["error"](err.message, `An error has ocured.`)
+	toastr["error"](err.message, `An error has occured.`)
 }
 
 process.on('uncaughtException', function (err:NodeJS.ErrnoException) { 
