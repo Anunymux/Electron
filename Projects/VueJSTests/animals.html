@@ -6,6 +6,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="./../../css/style.css">
+
         <script src="./animals.js"></script>
         <script src="./../../node_modules/vue/dist/vue.js"></script>
         
@@ -22,14 +24,16 @@
             <input type="text" v-model="currItem" @keypress.enter="addItem" required>
             <button @click="addItem">Add animal</button>
 
-            <ul>
-                <li v-for="(item, key) in items">
-                    <button @click="removeItem(key)">X</button>
-                    {{item}}
-                </li>
-            </ul>
-
-            
+            <div class="rounded-list">
+                <ol>
+                    <li v-for="(item, key) in items">
+                        <a href="#">
+                        <button @click="removeItem(key)">X</button>
+                        {{item}}
+                        </a>
+                    </li>
+                </ol>
+            </div>
 
         </div>
 
