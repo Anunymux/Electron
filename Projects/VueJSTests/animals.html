@@ -6,16 +6,28 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script src="./animals.js"></script>
         <script src="./../../node_modules/vue/dist/vue.js"></script>
+        
 
     </head>
     <body>
 
-        <h3>Test</h3>
+        <div id="app">
 
-        <h1>Noch ein Test..</h1>
+            <h1>{{title}}</h1>
 
-        <input type="text">
+            <h3>{{content}}</h3>
+
+            <ul>
+                <li v-for="item in items">{{item.text}}</li>
+            </ul>
+
+            <input type="text">
+
+        </div>
+
+        
 
     </body>
 </html>

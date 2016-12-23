@@ -1,5 +1,14 @@
 {
     "typescript.tsdk": "./node_modules/typescript/lib",
     "html.suggest.angular1": false,
-    "html.suggest.ionic": false
+    "html.suggest.ionic": false,
+    // Steuert die Verzögerung in ms für die Anzeige der Schnellvorschläge.
+    "editor.quickSuggestionsDelay": 0,
+    // Steuert den Schriftgrad.
+    "editor.fontSize": 18,
+
+    "editor.mouseWheelZoom": true,
+    "files.autoSave": "onFocusChange",
+    "git.confirmSync": false,
+    "css.validate": false
 }

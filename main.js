@@ -39,7 +39,7 @@ app.on('ready', _ => {
     })
 
     /*win.loadURL(`${__dirname}/index.html`)*/
-    win.loadURL(`${__dirname}/pwGenerator.html`)  
+    win.loadURL(`${__dirname}/Projects/VueJSTests/animals.html`)  
 })
 
 function PresentErrorNicely(err){

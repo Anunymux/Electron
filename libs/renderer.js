@@ -135,13 +135,6 @@ function PopulateContentFromFile(filePath) {
     });
     filePartOfContent.on('end', () => {
         appVars.droppedFile.content = data;
-        $("#reloadButton").notify('Done', {
-            elementPosition: "right",
-            className: "success",
-            autoHideDelay: 1000,
-            hideDuration: 0,
-            showDuration: 0
-        });
     });
     filePartOfContent.on('error', (err) => {
         if (err.code == 'EISDIR') {
