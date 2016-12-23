@@ -1,16 +1,23 @@
 var appVars = {
     title: "Das ist mein Titel",
     content: "Das ist mein Content",
-    items: [
-        { text: "Hund" },
-        { text: "Katze" },
-        { text: "Maus" }
-    ]
+    items: ["Hund", "Katze", "Maus"],
+    currItem: ""
 };
 document.addEventListener("DOMContentLoaded", () => {
     new Vue({
         el: "#app",
         data: appVars,
-        methods: {}
+        methods: {
+            addItem() {
+                if (appVars.currItem != "") {
+                    appVars.items.push(appVars.currItem);
+                    appVars.currItem = "";
+                }
+            },
+            removeItem(index) {
+                appVars.items.splice(index, 1);
+            }
+        }
     });
 });

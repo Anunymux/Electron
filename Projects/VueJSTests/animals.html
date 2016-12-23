@@ -19,11 +19,17 @@
 
             <h3>{{content}}</h3>
 
+            <input type="text" v-model="currItem" @keypress.enter="addItem" required>
+            <button @click="addItem">Add animal</button>
+
             <ul>
-                <li v-for="item in items">{{item.text}}</li>
+                <li v-for="(item, key) in items">
+                    <button @click="removeItem(key)">X</button>
+                    {{item}}
+                </li>
             </ul>
 
-            <input type="text">
+            
 
         </div>
 
