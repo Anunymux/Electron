@@ -1,7 +1,11 @@
 var appVars = {
     title: "Das ist mein Titel",
     content: "Das ist mein Content",
-    items: ["Hund", "Katze", "Maus"],
+    animals: [
+        { text: "Hund", quantity: 1 },
+        { text: "Katze", quantity: 2 },
+        { text: "Maus", quantity: 3 },
+    ],
     currItem: ""
 };
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,12 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
         methods: {
             addItem() {
                 if (appVars.currItem != "") {
-                    appVars.items.push(appVars.currItem);
+                    appVars.animals.push({
+                        text: appVars.currItem,
+                        quantity: 1
+                    });
                     appVars.currItem = "";
                 }
             },
             removeItem(index) {
-                appVars.items.splice(index, 1);
+                appVars.animals.splice(index, 1);
             }
         },
         filters: {

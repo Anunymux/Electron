@@ -27,14 +27,14 @@
 
             <div class="rounded-list">
                 <ul style="list-style: none;">
-                    <li v-for="(item, key) in items">
+                    <li v-for="(animal, key) in animals">
                         
                         <a href="#">
                             <button @click="removeItem(key)">X</button> 
-                            <b>{{item | capitalize}}</b> <br>
+                            <b>{{animal.text | capitalize}}</b> <br>
                             
-                            <span>The {{item | undercase}} weighs {{item | undercase}}</span> <br>
-                            https://en.wikipedia.org/wiki/{{item | undercase}}
+                            <span>The {{animal.text | undercase}} weighs {{animal.text | undercase}}</span> <br>
+                            https://en.wikipedia.org/wiki/{{animal.text | undercase}}
                         </a>
                     </li>
                 </ul>
