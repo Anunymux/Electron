@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
             removeItem(index:number){
                 appVars.items.splice(index, 1);
             }
+        },
+        filters: {
+            capitalize(value:string){
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            },
+            undercase(value:string) { 
+                return value.toLowerCase()
+            }
         }
     })
 })

@@ -21,23 +21,27 @@
 
             <h3>{{content}}</h3>
 
-            <input type="text" v-model="currItem" @keypress.enter="addItem" required>
-            <button @click="addItem">Add animal</button>
+            <input type="text" v-model="currItem" @keypress.enter="addItem" required placeholder="">
+            <button @click="addItem">add animal</button>
+
 
             <div class="rounded-list">
-                <ol>
+                <ul style="list-style: none;">
                     <li v-for="(item, key) in items">
+                        
                         <a href="#">
-                        <button @click="removeItem(key)">X</button>
-                        {{item}}
+                            <button @click="removeItem(key)">X</button> 
+                            <b>{{item | capitalize}}</b> <br>
+                            
+                            <span>The {{item | undercase}} weighs {{item | undercase}}</span> <br>
+                            https://en.wikipedia.org/wiki/{{item | undercase}}
                         </a>
                     </li>
-                </ol>
+                </ul>
             </div>
-
+           
         </div>
 
-        
-
+    
     </body>
 </html>

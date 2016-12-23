@@ -18,6 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
             removeItem(index) {
                 appVars.items.splice(index, 1);
             }
+        },
+        filters: {
+            capitalize(value) {
+                return value.charAt(0).toUpperCase() + value.slice(1);
+            },
+            undercase(value) {
+                return value.toLowerCase();
+            }
         }
     });
 });
