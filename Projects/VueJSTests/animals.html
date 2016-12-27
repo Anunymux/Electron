@@ -22,7 +22,7 @@
             <h3>{{content}}</h3>
 
             <form @submit.prevent="addItem">
-                <input type="text" v-model="currItem" required placeholder="">
+                <input type="text" v-model="currItem" placeholder="">
                 <button>add animal</button>
             </form>
 
@@ -31,7 +31,7 @@
                     <li v-for="(animal, key) in animals">
                         
                         <a href="#">
-                            <button @click="removeItem(key)">X</button> 
+                            <button @click="animals.splice(key,1)">X</button> 
                             <b>{{animal.text | capitalize}}</b> 
                             <button @click="animal.quantity -= 1" v-show="animal.quantity > 1">-</button>
                             {{animal.quantity}}

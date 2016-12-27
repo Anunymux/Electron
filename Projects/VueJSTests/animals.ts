@@ -22,13 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                     appVars.currItem = ""
                 }
-            },
-            removeItem(index:number){
-                appVars.animals.splice(index,1)
             }
         },
         computed:{
             amountAnimals(){
+
                 var sumAnimals:number = 0
                 appVars.animals.forEach(element => {
                     sumAnimals += element.quantity

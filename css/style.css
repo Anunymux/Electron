@@ -36,3 +36,7 @@
     border-radius: 2em;
     transition: all .3s ease-out;
 }
+
+.rounded-list ul{
+    padding-left: 15px;
+}

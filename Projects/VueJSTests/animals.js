@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                     appVars.currItem = "";
                 }
-            },
-            removeItem(index) {
-                appVars.animals.splice(index, 1);
             }
         },
         computed: {
