@@ -25,14 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             removeItem(index:number){
                 appVars.animals.splice(index,1)
-            },
-            incItem(index:number){
-                appVars.animals[index].quantity++
-            },
-            decItem(index:number){
-                if( !(appVars.animals[index].quantity <= 1) ){
-                    appVars.animals[index].quantity--
-                }
             }
         },
         computed:{

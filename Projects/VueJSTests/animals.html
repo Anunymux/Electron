@@ -32,9 +32,9 @@
                         <a href="#">
                             <button @click="removeItem(key)">X</button> 
                             <b>{{animal.text | capitalize}}</b> 
-                            <button @click="decItem(key)">-</button>
+                            <button @click="animal.quantity -= 1" v-show="animal.quantity > 1">-</button>
                             {{animal.quantity}}
-                            <button @click="incItem(key)">+</button>
+                            <button @click="animal.quantity += 1">+</button>
                             <br>
                             
                             <span>The {{animal.text | undercase}} weighs {{animal.text | undercase}}</span> <br>
