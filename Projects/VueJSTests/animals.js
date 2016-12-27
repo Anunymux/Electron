@@ -24,6 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             removeItem(index) {
                 appVars.animals.splice(index, 1);
+            },
+            incItem(index) {
+                appVars.animals[index].quantity++;
+            },
+            decItem(index) {
+                if (!(appVars.animals[index].quantity <= 1)) {
+                    appVars.animals[index].quantity--;
+                }
+            }
+        },
+        computed: {
+            amountAnimals() {
+                var sumAnimals = 0;
+                appVars.animals.forEach(element => {
+                    sumAnimals += element.quantity;
+                });
+                return sumAnimals;
             }
         },
         filters: {

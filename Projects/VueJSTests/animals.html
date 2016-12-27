@@ -31,13 +31,22 @@
                         
                         <a href="#">
                             <button @click="removeItem(key)">X</button> 
-                            <b>{{animal.text | capitalize}}</b> <br>
+                            <b>{{animal.text | capitalize}}</b> 
+                            <button @click="decItem(key)">-</button>
+                            {{animal.quantity}}
+                            <button @click="incItem(key)">+</button>
+                            <br>
                             
                             <span>The {{animal.text | undercase}} weighs {{animal.text | undercase}}</span> <br>
                             https://en.wikipedia.org/wiki/{{animal.text | undercase}}
                         </a>
                     </li>
                 </ul>
+            </div>
+
+            <div class="summary">
+                Amount of animal species: {{animals.length}} <br>
+                Amount of animals: {{amountAnimals}}
             </div>
            
         </div>
