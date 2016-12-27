@@ -21,9 +21,10 @@
 
             <h3>{{content}}</h3>
 
-            <input type="text" v-model="currItem" @keypress.enter="addItem" required placeholder="">
-            <button @click="addItem">add animal</button>
-
+            <form @submit.prevent="addItem">
+                <input type="text" v-model="currItem" required placeholder="">
+                <button>add animal</button>
+            </form>
 
             <div class="rounded-list">
                 <ul style="list-style: none;">
