@@ -18,6 +18,7 @@
     "@types/underscore": "^1.7.35",
     "@types/vue": "^1.0.31",
     "async-file": "^2.0.2",
+    "bootstrap": "^3.3.7",
     "electron-debug": "^1.1.0",
     "electron-reload": "^1.0.3",
     "jquery": "^3.1.1",

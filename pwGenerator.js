@@ -12,6 +12,7 @@ else {
     console.log('jQuery is installed');
 }
 var appVars = {
+    nachricht: "das ist mein Text",
     pw: {
         length: 8,
         numeric: true,

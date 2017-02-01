@@ -7,7 +7,8 @@ var appVars = {
         { text: "Katze", quantity: 2 },
         { text: "Maus", quantity: 3 },
     ],
-    currItem: ""
+    currItem: "",
+    nachricht: "asdasd"
 };
 var appMethods = {
     addItem() {

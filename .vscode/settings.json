@@ -10,5 +10,6 @@
     "editor.mouseWheelZoom": true,
     "files.autoSave": "onFocusChange",
     "git.confirmSync": false,
-    "css.validate": false
+    "css.validate": false,
+    "vsicons.presets.angular": false
 }

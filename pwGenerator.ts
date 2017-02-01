@@ -17,6 +17,7 @@ if (typeof jQuery == "undefined") {
 }
 
 var appVars = {
+	nachricht: "das ist mein Text",
     pw:{
         length:8,
         numeric:true,

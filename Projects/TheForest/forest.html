@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+    <head>
+
+        <!--CSS-Verweise-->
+
+        <link rel="stylesheet" href="./../../node_modules\bootstrap\dist\css\bootstrap.min.css">
+        <link rel="stylesheet" href="./../../node_modules\bootstrap\dist\css/bootstrap-theme.min.css">
+
+        <!-- muss vor JS-Verweisen stehen -->
+		<script>
+			if (typeof module === 'object') {
+			    window.module = module;
+			    module = undefined;
+			}
+		</script>
+        
+        <!--Skriptverweise-->
+
+		<script src="./../../node_modules\jquery\dist\jquery.min.js/jquery.min.js"></script>
+		<script src="./../../node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+		<script src="./../../node_modules\vue\dist\vue.min.js"></script>
+		<script src="./forest.js"></script>
+        
+		<!-- muss nach JS-Verweisen stehen -->
+		<script>
+			if (window.module) module = window.module;
+		</script>
+
+    </head>
+    <body>
+        
+        
+    </body>
+</html>
