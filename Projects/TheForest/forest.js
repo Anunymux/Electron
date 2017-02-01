@@ -7,9 +7,23 @@ else {
     console.log('jQuery is installed');
 }
 var appVars = {
-    status: "inaktiv"
+    status: "inaktiv",
+    player: {
+        health: 100,
+        armor: 100,
+        stamina: 100,
+        hunger: 0,
+        thirst: 0
+    },
+    hacks: {
+        unlimitedRes: true
+    }
 };
-var appMethods = {};
+var appMethods = {
+    testButtonClass: function () {
+        appVars.hacks.unlimitedRes = !appVars.hacks.unlimitedRes;
+    }
+};
 var appComputedProperties = {};
 document.addEventListener("DOMContentLoaded", () => {
     console.log("ready");

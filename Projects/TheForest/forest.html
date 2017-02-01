@@ -40,8 +40,8 @@
                 <div class="row">
                     <div class="col-md-4">
                         
-                        <button type="button" class="btn btn-default">
-                            Default
+                        <button type="button" @click="testButtonClass" class="btn btn-default" v-bind:class="{'btn-success': hacks.unlimitedRes}">
+                            Unlimited Res
                         </button> 
                         <button type="button" class="btn btn-default">
                             Default
@@ -85,13 +85,10 @@
                         </dl>
                     </div>
                     <div class="col-md-4">
-                        <img alt="Bootstrap Image Preview" src="./../../Assets/Pictures/goat.jpeg" width="400" />
+                        <img alt="Bootstrap Image Preview" src="./../../Assets/Pictures/goat.jpeg" width="200" />
                     </div>
                 </div>
             </div>
-
         </div>
-        
-        
     </body>
 </html>
