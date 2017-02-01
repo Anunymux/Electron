@@ -16,9 +16,9 @@
         
         <!--Skriptverweise-->
 
-		<script src="./../../node_modules\jquery\dist\jquery.min.js/jquery.min.js"></script>
+		<script src="./../../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="./../../node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
-		<script src="./../../node_modules\vue\dist\vue.min.js"></script>
+		<script src="./../../node_modules\vue\dist\vue.js"></script>
 		<script src="./forest.js"></script>
         
 		<!-- muss nach JS-Verweisen stehen -->
@@ -28,6 +28,69 @@
 
     </head>
     <body>
+        <div id="app">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>The Forest V0.53c</h2>
+                        <h3>Status: {{status}}</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        
+                        <button type="button" class="btn btn-default">
+                            Default
+                        </button> 
+                        <button type="button" class="btn btn-default">
+                            Default
+                        </button> 
+                        <button type="button" class="btn btn-default">
+                            Default
+                        </button> 
+                        <button type="button" class="btn btn-default">
+                            Default
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <dl>
+                            <dt>
+                                Description lists
+                            </dt>
+                            <dd>
+                                A description list is perfect for defining terms.
+                            </dd>
+                            <dt>
+                                Euismod
+                            </dt>
+                            <dd>
+                                Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+                            </dd>
+                            <dd>
+                                Donec id elit non mi porta gravida at eget metus.
+                            </dd>
+                            <dt>
+                                Malesuada porta
+                            </dt>
+                            <dd>
+                                Etiam porta sem malesuada magna mollis euismod.
+                            </dd>
+                            <dt>
+                                Felis euismod semper eget lacinia
+                            </dt>
+                            <dd>
+                                Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-4">
+                        <img alt="Bootstrap Image Preview" src="./../../Assets/Pictures/goat.jpeg" width="400" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
         
         
     </body>
