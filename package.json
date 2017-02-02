@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "^7.0.4",
+    "@types/toastr": "^2.1.32",
     "devtron": "^1.4.0",
     "electron-connect": "^0.6.1",
     "gulp": "^3.9.1",

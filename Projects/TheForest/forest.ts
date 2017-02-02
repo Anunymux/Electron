@@ -2,7 +2,9 @@ require("electron-connect").client.create()
 
 console.log('in renderer')
 
-const toastr = require('toastr')
+var toastr:Toastr = require('toastr')
+
+
 
 if (typeof jQuery == "undefined") {
 	alert("jQuery is not installed")
@@ -25,8 +27,11 @@ var appVars = {
 }
 
 var appMethods = {
-    testButtonClass: function () {
+    testButtonClass: () => {
         appVars.hacks.unlimitedRes = !appVars.hacks.unlimitedRes
+    },
+    showError: () => {
+        throw DOMException
     }
 }
 
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function PresentErrorNicely(err:NodeJS.ErrnoException){
-
+    
 	toastr.options = {
 		"newestOnTop": false,
 		"positionClass": "toast-top-right",
@@ -67,5 +72,6 @@ function PresentErrorNicely(err:NodeJS.ErrnoException){
 
 process.on('uncaughtException', function (err:NodeJS.ErrnoException) {
     PresentErrorNicely(err)
-	console.log(err)
+	console.log(`Uncaught exception:`)
+    console.log(err)
 })

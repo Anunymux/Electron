@@ -1,6 +1,6 @@
 require("electron-connect").client.create();
 console.log('in renderer');
-const toastr = require('toastr');
+var toastr = require('toastr');
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
 }
@@ -21,8 +21,11 @@ var appVars = {
     }
 };
 var appMethods = {
-    testButtonClass: function () {
+    testButtonClass: () => {
         appVars.hacks.unlimitedRes = !appVars.hacks.unlimitedRes;
+    },
+    showError: () => {
+        throw DOMException;
     }
 };
 var appComputedProperties = {};
@@ -53,5 +56,6 @@ function PresentErrorNicely(err) {
 }
 process.on('uncaughtException', function (err) {
     PresentErrorNicely(err);
+    console.log(`Uncaught exception:`);
     console.log(err);
 });
