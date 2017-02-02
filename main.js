@@ -1,8 +1,8 @@
 const electron = require('electron')
 const appEnv = 'development'
 
-/*require('electron-reload')(__dirname);*/
 require('electron-debug')({ showDevTools: false });
+var client = require("electron-connect").client;
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -41,7 +41,6 @@ app.on('ready', _ => {
     /*win.loadURL(`${__dirname}/pwGenerator.html`)*/
     win.loadURL(`${__dirname}/Projects/TheForest/forest.html`)
 
-    var client = require("electron-connect").client;
     client.create(win);
 })
 
