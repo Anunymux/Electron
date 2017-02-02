@@ -1,72 +1,92 @@
-<html>
-    <head>
-        <title>Generate Passwords</title>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Generate Passwords</title>
+        
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" href="./node_modules/toastr/build/toastr.min.css">
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+        
+		<!-- muss vor Scripts stehen -->
+		<script>
+			if (typeof module === 'object') {
+			    window.module = module;
+			    module = undefined;
+			}
+		</script>
+        
+		<script src="./libs/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+			crossorigin="anonymous"></script>
+		<script src="./libs/vue.js"></script>
+		<script src="./libs/notify.min.js"></script>
+		<script src="./pwGenerator.js"></script>
+		<!-- muss nach Scripts stehen -->
+		<script>
+			if (window.module) module = window.module;
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+            <div class="container-fluid">
 
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="./node_modules/toastr/build/toastr.min.css">
+                <div class="row"> <!--Header-->
+                    <div class="col-md-12">
+                        <h3 class="text-center">
+                            Generate Passwords
+                            <br>
+                            <label>Test{{nachricht}}</label>
+                        </h3>
+                    </div>
+                </div>
+                
+                <div class="row"> <!--Options-->
+                    <div class="col-md-3">
+                        <div class="checkbox disabled">
+                            <label><input type="checkbox" checked disabled>lowerCase <b>always true</b></label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" v-model="pw.upperCase">upperCase</label> <b>{{ pw.upperCase }}</b>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" v-model="pw.numeric">numeric</label> <b>{{ pw.numeric }}</b>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" v-model="pw.symbolic">symbolic</label> <b>{{ pw.symbolic }}</b>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
+                            <option v-for="item in pw.allowedSymbols">{{item}}</option>
+                        </select>
+                        <p></p>
+                    </div>
+                    <div class="col-md-7">
+                        <span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols.length }} / {{ pw.allowedSymbols.length }}</span>
+                        <p></p>
+                    </div>
+                </div>
+                
+                <div class="row"> <!--Length-->
+                    <div class="col-md-12">
+                        <label for="length">length: {{pw.length}}</label>
+                        <input id="length" type="range" min="8" max="100" v-model="pw.length">
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
 
-        <!-- muss vor Scripts stehen -->
-        <script>
-            if (typeof module === 'object') {
-                window.module = module;
-                module = undefined;
-            }
-        </script>
-
-        <script src="./libs/vue.js"></script>
-        <script src="./libs/jquery-3.1.1.min.js"></script>
-        <script src="./libs/notify.min.js"></script>
-
-        <script src="./pwGenerator.js"></script>
-
-        <!-- muss nach Scripts stehen -->
-        <script>
-            if (window.module) module = window.module;
-        </script>
-
-    </head>
-
-    <body>
-
-
-        <div id="wrapper">
-
-            <div id="top">
-                <h1>Generate Passwords</h1>
-
-                <fieldset>
-                    <legend>Options</legend>
-
-                    <input type="checkbox" id="checkbox" checked readonly disabled>
-                    lowerCase always true<br>        
-                               
-                    <input type="checkbox" id="checkbox" v-model="pw.mixedCase">
-                    mixedCase
-                    <label for="checkbox">{{ pw.mixedCase }}</label><br>
-
-                    <input type="checkbox" id="checkbox" v-model="pw.numeric">
-                    numeric
-                    <label for="checkbox">{{ pw.numeric }}</label><br>
-
-                    <input type="checkbox" id="checkbox" v-model="pw.symbolic">
-                    symbolic
-                    <label for="checkbox">{{ pw.symbolic }}</label><br>
-
-                    <label for="length">length: {{pw.length}}</label>
-                    <input id="length" type="range" min="8" max="100" v-model="pw.length"> <p></p>
-
-                    <select v-if="pw.symbolic" v-model="pw.selectedSymbols" multiple style='height: 150px;'>
-                        <option v-for="item in pw.allowedSymbols">{{item}}</option>
-                    </select>
-                    <p></p>
-                    <span v-if="pw.symbolic">Selected: {{ pw.selectedSymbols }}</span> <p></p>           
-
-                    <button @click="GeneratePW">Generate PW</button>
-
-                </fieldset>        
+                <div class="row"> <!--Generate-->
+                    <div class="col-md-12">
+                        <button @click="GeneratePW" type="button" class="btn btn-primary btn-block">
+                        Generate PW
+                        </button>
+                    </div>
+                </div>
 
             </div>
-
-        </div>
-    </body>
+		</div>
+	</body>
 </html>

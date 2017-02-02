@@ -12,11 +12,12 @@ else {
     console.log('jQuery is installed');
 }
 var appVars = {
+    nachricht: "das ist mein Text",
     pw: {
         length: 8,
         numeric: true,
         symbolic: false,
-        mixedCase: true,
+        upperCase: true,
         allowedSymbols: ['!', '$', '%', '&', '/', '(', ')', '=', '?', '{', '[', ']', '}', '+', '*', '#', '-', '_', '.', ':', ',', ';', '<', '>'],
         selectedSymbols: ['!', '$', '%', '&', '/', '(', ')', '=', '?', '{', '[', ']', '}', '+', '*', '#', '-', '_', '.', ':', ',', ';', '<', '>']
     }
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 var allowedMissingChars = lowerCaseChars;
                 //first make sure that all required chars are used 
                 pw.push(ReturnRnd(lowerCaseChars, 2));
-                if (appVars.pw.mixedCase) {
+                if (appVars.pw.upperCase) {
                     pw.push(ReturnRnd(upperCaseChars, 2));
                     allowedMissingChars += upperCaseChars;
                 }
@@ -92,7 +93,7 @@ function PresentErrorNicely(err) {
         "tapToDismiss": false,
         "progressBar": false
     };
-    toastr["error"](err.message, `An error has ocured.`);
+    toastr["error"](err.message, `An error has occured.`);
 }
 process.on('uncaughtException', function (err) {
     PresentErrorNicely(err);
