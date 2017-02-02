@@ -4,8 +4,10 @@
     "debug.inlineValues": true,
 
     "editor.fontSize": 14,
+    "editor.formatOnType": true,
     "editor.mouseWheelZoom": true,
     "editor.quickSuggestionsDelay": 0,
+    /*"editor.formatOnSave": false,*/
 
     "files.autoSave": "onFocusChange",
 
@@ -18,6 +20,7 @@
     "typescript.tsdk": "./node_modules/typescript/lib",
 
     "vsicons.presets.angular": false,
-    
+
+    "window.zoomLevel": 1,
     "workbench.editor.tabCloseButton": "off"    
 }
