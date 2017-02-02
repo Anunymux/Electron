@@ -2,6 +2,7 @@
 console.log('in renderer');
 const toastr = require('toastr');
 const fs = require("fs");
+/*import * as fsa from 'async-file'*/
 var appVars = {
     testArray: ['blub', 'bla', 'bam'],
     testArraySize: 0,

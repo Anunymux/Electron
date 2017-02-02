@@ -3,7 +3,7 @@ console.log('in renderer')
 const toastr = require('toastr')
 
 import fs = require('fs')
-import * as fsa from 'async-file'
+/*import * as fsa from 'async-file'*/
 
 var appVars = {
 	testArray:['blub', 'bla', 'bam'],
@@ -159,7 +159,7 @@ function PopulateContentFromFile(filePath:string){
 	var filePartOfContent:fs.ReadStream = fs.createReadStream(filePath, {start: appVars.droppedFile.range.bytesFrom, end: appVars.droppedFile.range.bytesTil})
 	var data:string = ''
 
-	filePartOfContent.on('data', (chunk) => {
+	filePartOfContent.on('data', (chunk:number) => {
 		data += chunk
 	})
 	

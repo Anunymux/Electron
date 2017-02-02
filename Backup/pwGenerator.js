@@ -4,6 +4,8 @@ const toastr = require('toastr');
 const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
 const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numberChars = '0123456789';
+/*import fs = require('fs')
+import * as fsa from 'async-file'*/
 const _ = require("lodash");
 if (typeof jQuery == "undefined") {
     alert("jQuery is not installed");
@@ -65,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ev.preventDefault();
     };
 });
-function Randomsort(a, b) {
+function Randomsort() {
     return Math.random() > .5 ? -1 : 1;
 }
 function ShuffleStr(text) {

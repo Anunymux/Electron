@@ -6,8 +6,8 @@ const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz'
 const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const numberChars = '0123456789'
 
-import fs = require('fs')
-import * as fsa from 'async-file'
+/*import fs = require('fs')
+import * as fsa from 'async-file'*/
 import * as _ from 'lodash'
 
 if (typeof jQuery == "undefined") {
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 })
 
-function Randomsort(a, b) { 
+function Randomsort() { 
 	return Math.random()>.5 ? -1 : 1
 }
 
