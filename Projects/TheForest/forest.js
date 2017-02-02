@@ -8,7 +8,7 @@ else {
     console.log('jQuery is installed');
 }
 var appVars = {
-    status: "inaktiv",
+    status: "not implemented yet",
     player: {
         health: 100,
         armor: 100,

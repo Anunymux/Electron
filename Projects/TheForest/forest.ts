@@ -11,7 +11,7 @@ if (typeof jQuery == "undefined") {
 }
 
 var appVars = {
-    status: "inaktiv",
+    status: "not implemented yet",
     player: {
         health:100,
         armor:100,
