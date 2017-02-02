@@ -55,20 +55,15 @@ function PresentErrorNicely(err:NodeJS.ErrnoException){
         "newestOnTop": false,
 		"positionClass": "toast-top-right",
 		"preventDuplicates": false,
-		
-		"showDuration": 999999,
-		"hideDuration": 999999,
-		"timeOut":0,
-		"extendedTimeOut":0,
 		"closeButton":true,
 		"tapToDismiss": false,
 		"progressBar":false
 	}
 
-	toastr["error"](err.message, `An error has occured.`)
+	toastr["error"](err.message, `An error has occured. Check console for more info.`)
 }
 
-process.on('uncaughtException', function (err:NodeJS.ErrnoException) {
+process.on('uncaughtException', function (err: NodeJS.ErrnoException) {
     PresentErrorNicely(err)
 	console.log(`Uncaught exception:`)
     console.log(err)
