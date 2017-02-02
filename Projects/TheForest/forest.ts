@@ -4,8 +4,6 @@ console.log('in renderer')
 
 var toastr:Toastr = require('toastr')
 
-
-
 if (typeof jQuery == "undefined") {
 	alert("jQuery is not installed")
 }else{
@@ -53,15 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function PresentErrorNicely(err:NodeJS.ErrnoException){
     
-	toastr.options = {
-		"newestOnTop": false,
+    toastr.options = {
+        "newestOnTop": false,
 		"positionClass": "toast-top-right",
 		"preventDuplicates": false,
-		"onclick": null,
-		"showDuration": "999999",
-		"hideDuration": "999999",
-		"timeOut":"0",
-		"extendedTimeOut":"0",
+		
+		"showDuration": 999999,
+		"hideDuration": 999999,
+		"timeOut":0,
+		"extendedTimeOut":0,
 		"closeButton":true,
 		"tapToDismiss": false,
 		"progressBar":false
