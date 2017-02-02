@@ -1,3 +1,5 @@
+require("electron-connect").client.create()
+
 console.log('in renderer')
 
 const toastr = require('toastr')
