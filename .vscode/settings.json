@@ -1,15 +1,23 @@
 {
-    "typescript.tsdk": "./node_modules/typescript/lib",
+    "css.validate": false,
+
+    "debug.inlineValues": true,
+
+    "editor.fontSize": 14,
+    "editor.mouseWheelZoom": true,
+    "editor.quickSuggestionsDelay": 0,
+
+    "files.autoSave": "onFocusChange",
+
+    "git.confirmSync": false,
+
     "html.suggest.angular1": false,
     "html.suggest.ionic": false,
-    // Steuert die Verzögerung in ms für die Anzeige der Schnellvorschläge.
-    "editor.quickSuggestionsDelay": 0,
-    // Steuert den Schriftgrad.
-    "editor.fontSize": 14,
 
-    "editor.mouseWheelZoom": true,
-    "files.autoSave": "onFocusChange",
-    "git.confirmSync": false,
-    "css.validate": false,
-    "vsicons.presets.angular": false
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+
+    "vsicons.presets.angular": false,
+    
+    "workbench.editor.tabCloseButton": "off"    
 }
