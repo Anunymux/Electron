@@ -25,6 +25,7 @@
     "vue": "^2.1.6"
   },
   "devDependencies": {
+    "@types/node": "^7.0.4",
     "devtron": "^1.4.0",
     "electron-connect": "^0.6.1",
     "gulp": "^3.9.1",
