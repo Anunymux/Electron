@@ -16,8 +16,8 @@ app.on('ready', _ => {
     }
 
     var win = new BrowserWindow({
-        width: 1000,
-        height: 500,
+        width: 605,
+        height: 770,
         alwaysOnTop: false,
         frame: true,
         transparent:false
