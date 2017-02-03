@@ -9,6 +9,35 @@
     "editor.quickSuggestionsDelay": 0,
     /*"editor.formatOnSave": false,*/
 
+    "extension-manager.extensions": [
+        "annsk.alignment", //replace this with desired extension
+        "HookyQR.beautify",
+        "aeschli.vscode-css-formatter",
+        "webstp.extension-manager",
+        "AndersEAndersen.html-class-suggestions",
+        "Zignd.html-css-class-completion",
+        "abusaidm.html-snippets",
+        "SirTori.indenticator",
+        "xabikos.JavaScriptSnippets",
+        "chenxsan.vscode-standard-format",
+        "chenxsan.vscode-standardjs",
+        "capaj.vscode-standardjs-snippets",
+        "donjayamanne.jquerysnippets",
+        "christian-kohler.npm-intellisense",
+        "GregorBiswanger.package-watcher",
+        "christian-kohler.path-intellisense",
+        "searKing.preview-vscode",
+        "sensourceinc.require-complete",
+        "pmneo.tsimporter",
+        "typings.vscode-typings",
+        "jvitor83.typings-autoinstaller",
+        "benjaminromano.typings-installer",
+        "octref.vetur",
+        "lihui.vs-color-picker",
+        "robertohuertasm.vscode-icons",
+        "hollowtree.vue-snippets"
+    ],
+
     "files.autoSave": "onFocusChange",
 
     "git.confirmSync": false,
