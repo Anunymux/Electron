@@ -46,10 +46,11 @@
     "html.suggest.ionic": false,
 
     "typescript.referencesCodeLens.enabled": true,
-    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.check.tscVersion": true,
 
     "vsicons.presets.angular": false,
 
     "window.zoomLevel": 1,
-    "workbench.editor.tabCloseButton": "off"    
+    "workbench.editor.tabCloseButton": "off",
+    "files.associations": {}
 }

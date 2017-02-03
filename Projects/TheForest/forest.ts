@@ -20,7 +20,7 @@ var appVars = {
         thirst:0
     },
     hacks:{
-        unlimitedRes:true
+        unlimitedRes:false
     }
 }
 
