@@ -13,8 +13,7 @@
         "abusaidm.html-snippets",
         "aeschli.vscode-css-formatter",
         "AESSoft.aessoft-class-autocomplete",
-        "AndersEAndersen.html-class-suggestions",
-        "annsk.alignment", //replace this with desired extension
+        "annsk.alignment",
         "benjaminromano.typings-installer",
         "capaj.vscode-standardjs-snippets",
         "chenxsan.vscode-standard-format",
@@ -43,8 +42,7 @@
         "spywhere.guides",
         "typings.vscode-typings",
         "webstp.extension-manager",
-        "xabikos.JavaScriptSnippets",
-        "Zignd.html-css-class-completion"
+        "xabikos.JavaScriptSnippets"
     ],
 
     "files.autoSave": "onFocusChange",
