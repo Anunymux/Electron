@@ -39,7 +39,7 @@ app.on('ready', _ => {
     })
 
     /*win.loadURL(`${__dirname}/pwGenerator.html`)*/
-    win.loadURL(`${__dirname}/Projects/TheForest/forest.html`)
+    win.loadURL(`${__dirname}/Project_files/index.html`)
 
     client.create(win);
 })

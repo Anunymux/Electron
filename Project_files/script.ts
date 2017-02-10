@@ -11,17 +11,7 @@ if (typeof jQuery == "undefined") {
 }
 
 var appVars = {
-    status: "not implemented yet",
-    player: {
-        health:100,
-        armor:100,
-        stamina:100,
-        hunger:0,
-        thirst:0
-    },
-    hacks:{
-        unlimitedRes:false
-    }
+    
 }
 
 var appMethods = {
@@ -30,6 +20,17 @@ var appMethods = {
     },
     showError: () => {
         throw DOMException
+    },
+    tryMemoryJS: () => {
+        var memscan = require("memscan");
+
+        var pid = memscan.findProcess("notepad.exe");
+        if (pid < 1) {
+            console.error("Process not found");
+            return;
+        }
+        console.log("Found process: " + pid);
+        
     }
 }
 
