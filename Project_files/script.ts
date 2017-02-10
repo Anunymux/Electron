@@ -11,17 +11,7 @@ if (typeof jQuery == "undefined") {
 }
 
 var appVars = {
-    status: "not implemented yet",
-    player: {
-        health:100,
-        armor:100,
-        stamina:100,
-        hunger:0,
-        thirst:0
-    },
-    hacks:{
-        unlimitedRes:false
-    }
+    
 }
 
 var appMethods = {

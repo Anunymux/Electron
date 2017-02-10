@@ -1,5 +1,5 @@
 {
-  "name": "instant-any",
+  "name": "timetracker",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -9,20 +9,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/electron": "^1.4.27",
+    "@types/electron": "^1.4.32",
     "@types/electron-window-state": "^2.0.28",
     "@types/jquery": "^2.0.34",
-    "@types/line-reader": "0.0.28",
     "@types/lodash": "^4.14.43",
     "@types/underscore": "^1.7.35",
     "@types/vue": "^1.0.31",
-    "async-file": "^2.0.2",
     "bootstrap": "^3.3.7",
     "electron-debug": "^1.1.0",
     "jquery": "^3.1.1",
+<<<<<<< HEAD
     "lodash": "^4.17.2",
+=======
+    "lodash": "^4.17.4",
+>>>>>>> 867ba04dfedb90369d5edb39f32016dda2cb6fc9
     "toastr": "^2.1.2",
-    "vue": "^2.1.6"
+    "vue": "^2.1.10"
   },
   "devDependencies": {
     "@types/node": "^7.0.4",
@@ -30,6 +32,6 @@
     "devtron": "^1.4.0",
     "electron-connect": "^0.6.1",
     "gulp": "^3.9.1",
-    "typescript": "^2.1.5"
+    "typescript": "^2.1.6"
   }
 }
