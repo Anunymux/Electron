@@ -7,6 +7,6 @@ gulp.task("default", function () {
 // Restart browser process
  gulp.watch("main.js", electron.restart);
 // Reload renderer process
- gulp.watch(["./Project_files/index.html"], electron.reload);
- gulp.watch(["./Project_files/script.js"], electron.reload);
+ gulp.watch(["./Projects/TheForest/forest.html"], electron.reload);
+ gulp.watch(["./Projects/TheForest/forest.js"], electron.reload);
 });
