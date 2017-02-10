@@ -26,6 +26,15 @@ var appMethods = {
     },
     showError: () => {
         throw DOMException;
+    },
+    tryMemoryJS: () => {
+        var memscan = require("memscan");
+        var pid = memscan.findProcess("notepad.exe");
+        if (pid < 1) {
+            console.error("Process not found");
+            return;
+        }
+        console.log("Found process: " + pid);
     }
 };
 var appComputedProperties = {};
